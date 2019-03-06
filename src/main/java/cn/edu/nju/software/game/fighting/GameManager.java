@@ -1,10 +1,11 @@
 package cn.edu.nju.software.game.fighting;
 
-import cn.edu.nju.software.game.fighting.model.scenario.HomeScenario;
-import cn.edu.nju.software.game.fighting.model.scenario.Scenario;
+import cn.edu.nju.software.game.fighting.model.Game;
+import cn.edu.nju.software.game.fighting.model.scenario.IScenario;
+import cn.edu.nju.software.game.fighting.model.scenario.concrete.HomeScenario;
+import cn.edu.nju.software.game.fighting.model.scenario.ScenarioFactory;
 import cn.edu.nju.software.game.fighting.ui.GameLogPanel;
 import cn.edu.nju.software.game.fighting.ui.GameOperatePanel;
-import cn.edu.nju.software.game.fighting.ui.scenario.operate.HomeScenarioOperatePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +17,9 @@ public class GameManager {
     private GameLogPanel gameLogPanel;
     private GameOperatePanel gameOperatePanel;
 
-    private Scenario currentScenario;
+    private IScenario currentScenario;
+
+    private Game gameInstance;
 
     private GameManager() {
     }
@@ -64,15 +67,37 @@ public class GameManager {
         gridBagConstraints.gridx=1;
         container.add(gameOperatePanel, gridBagConstraints);
 
-        changeScenario(new HomeScenario());
+        changeScenario(HomeScenario.class);
 
         mainFrame.setVisible(true);    //设置窗口是否可见
     }
 
-    public void changeScenario(Scenario scenario)
+    public void startNewGame(){
+        gameInstance = new Game();
+        gameInstance.start();
+    }
+
+    public Game getGameInstance(){
+        return gameInstance;
+    }
+
+    public void changeScenario(Class<? extends IScenario> scenarioClass)
     {
-        this.currentScenario = scenario;
-        gameOperatePanel.changeGameOperatePanel(currentScenario.getOperatorPanel());
+        IScenario scenario = ScenarioFactory.getScenario(scenarioClass);
+        changeScenario(scenario);
+    }
+
+    private void changeScenario(IScenario scenario)
+    {
+        currentScenario = scenario;
+        showLog("\n  "+currentScenario.getScenarioName());
+        gameOperatePanel.changeGameOperatePanel(currentScenario.getOperatePanel());
+    }
+
+    public void returnHomeScenario()
+    {
+        gameOperatePanel.setSelectedIndex(0);
+        changeScenario(HomeScenario.class);
     }
 
     public void stop(){

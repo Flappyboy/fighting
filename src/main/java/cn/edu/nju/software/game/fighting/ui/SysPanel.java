@@ -21,7 +21,7 @@ public class SysPanel extends JPanel {
         BaseBtn backBtn = new BaseBtn("返回主菜单");
         backBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                GameManager.getInstance().returnHomeScenario();
             }
         });
         box.add(backBtn);
