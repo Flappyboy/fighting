@@ -1,6 +1,6 @@
 package cn.edu.nju.software.game.fighting.model.ability;
 
-import cn.edu.nju.software.game.fighting.model.role.State;
+import cn.edu.nju.software.game.fighting.model.role.attribute.State;
 
 import java.util.HashMap;
 

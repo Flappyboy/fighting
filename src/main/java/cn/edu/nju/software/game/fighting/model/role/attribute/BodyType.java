@@ -1,4 +1,4 @@
-package cn.edu.nju.software.game.fighting.model.role;
+package cn.edu.nju.software.game.fighting.model.role.attribute;
 
 public enum BodyType {
     BIG("大"), MEDIUM("中"), SAMLL("小");

@@ -5,19 +5,48 @@ package cn.edu.nju.software.game.fighting.model.role;
 import cn.edu.nju.software.game.fighting.model.ability.AttackAbility;
 import cn.edu.nju.software.game.fighting.model.ability.DefenseAbility;
 import cn.edu.nju.software.game.fighting.model.ability.SpecificAbility;
+import cn.edu.nju.software.game.fighting.model.role.attribute.BodyType;
+import cn.edu.nju.software.game.fighting.model.role.attribute.Gender;
+import cn.edu.nju.software.game.fighting.model.role.attribute.Profession;
+import cn.edu.nju.software.game.fighting.model.role.attribute.Race;
+import cn.edu.nju.software.game.fighting.model.role.bag.Bag;
+import cn.edu.nju.software.game.fighting.model.role.equipment.EquipmentList;
 
-public abstract class Role {
-    Gender gender;
-    BodyType bodyType;
+public class Role {
 
+    // 桥接模式
     String id;
     String name;
     Integer level;
     Integer exp;
 
+    Gender gender;
+    BodyType bodyType;
+    Race race;
+    Profession profession;
+
+    Bag bag;
+    EquipmentList equipmentList;
+
     AttackAbility attackAbility;
     DefenseAbility defenseAbility;
     SpecificAbility specificAbility;
+
+    public Bag getBag() {
+        return bag;
+    }
+
+    public void setBag(Bag bag) {
+        this.bag = bag;
+    }
+
+    public EquipmentList getEquipmentList() {
+        return equipmentList;
+    }
+
+    public void setEquipmentList(EquipmentList equipmentList) {
+        this.equipmentList = equipmentList;
+    }
 
     public Gender getGender() {
         return gender;
@@ -89,5 +118,21 @@ public abstract class Role {
 
     public void setSpecificAbility(SpecificAbility specificAbility) {
         this.specificAbility = specificAbility;
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
+    }
+
+    public Profession getProfession() {
+        return profession;
+    }
+
+    public void setProfession(Profession profession) {
+        this.profession = profession;
     }
 }
