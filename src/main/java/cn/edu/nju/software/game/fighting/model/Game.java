@@ -14,4 +14,9 @@ public class Game {
     public void createNewCharacter(Character character) {}
 
     public void save(){}
+
+    public void say(String words)
+    {
+        GameManager.getInstance().showLog(words);
+    }
 }
