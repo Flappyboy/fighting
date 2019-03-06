@@ -1,20 +1,19 @@
 package cn.edu.nju.software.game.fighting.model;
 
 import cn.edu.nju.software.game.fighting.GameManager;
-import cn.edu.nju.software.game.fighting.model.character.Character;
-import cn.edu.nju.software.game.fighting.model.scenario.concrete.NewCharacterScenario;
+import cn.edu.nju.software.game.fighting.model.role.Role;
+import cn.edu.nju.software.game.fighting.model.scenario.concrete.NewRoleScenario;
 import cn.edu.nju.software.game.fighting.model.state.State;
-import cn.edu.nju.software.game.fighting.model.state.implement.BattleOverState;
 import cn.edu.nju.software.game.fighting.model.state.implement.BeginState;
 
 public class Game {
     private State state = new BeginState(this);
 
     public void start() {
-        GameManager.getInstance().changeScenario(NewCharacterScenario.class);
+        GameManager.getInstance().changeScenario(NewRoleScenario.class);
     }
 
-    public void createNewCharacter(Character character) {
+    public void createNewRole(Role role) {
     }
 
     public void save() {

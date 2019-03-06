@@ -10,7 +10,7 @@ public class BeginState extends StateAdapter {
     }
 
     @Override
-    public void createCharacter() {
+    public void createRole() {
         game.say("------你已成功创建角色-------");
         game.setState(new SceneState(game));
     }
