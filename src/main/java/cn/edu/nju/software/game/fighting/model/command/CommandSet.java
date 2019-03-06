@@ -17,4 +17,8 @@ public abstract class CommandSet {
     public Iterator<ICommand> getCommandIterator(){
         return commandList.iterator();
     }
+
+    public String getCommandSetName() {
+        return commandSetName;
+    }
 }

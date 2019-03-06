@@ -12,4 +12,6 @@ public interface IScenario {
     OperatePanel getOperatePanel();
 
     String getScenarioName();
+
+    void eventHandel(String event, String ... params);
 }

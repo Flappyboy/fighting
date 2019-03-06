@@ -1,17 +1,15 @@
 package cn.edu.nju.software.game.fighting.model.command.NewCharacterCommand;
 
 import cn.edu.nju.software.game.fighting.model.Game;
-import cn.edu.nju.software.game.fighting.model.character.ICharacter;
+import cn.edu.nju.software.game.fighting.model.character.Character;
 import cn.edu.nju.software.game.fighting.model.command.ICommand;
-
-import javax.swing.*;
 
 public class NewCharacterCommand implements ICommand {
 
-    ICharacter character;
+    Character character;
     Game game;
 
-    public NewCharacterCommand(ICharacter character, Game game) {
+    public NewCharacterCommand(Character character, Game game) {
         this.character = character;
         this.game = game;
     }

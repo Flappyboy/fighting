@@ -1,6 +1,6 @@
 package cn.edu.nju.software.game.fighting.model.scenario.concrete;
 
-import cn.edu.nju.software.game.fighting.model.character.ICharacter;
+import cn.edu.nju.software.game.fighting.model.character.Character;
 import cn.edu.nju.software.game.fighting.model.command.NewCharacterCommand.NewCharacterCommandSet;
 import cn.edu.nju.software.game.fighting.model.scenario.SharedScenario;
 import cn.edu.nju.software.game.fighting.ui.scenario.operate.BaseScenarioOperatePanel;
@@ -8,7 +8,7 @@ import cn.edu.nju.software.game.fighting.ui.scenario.operate.OperatePanel;
 
 public class NewCharacterScenario extends SharedScenario {
 
-    ICharacter character;
+    Character character;
 
     public NewCharacterScenario() {
         scenarioName = "新建角色";
@@ -22,5 +22,9 @@ public class NewCharacterScenario extends SharedScenario {
     @Override
     protected void createCommandSets() {
         commandSetList.add(NewCharacterCommandSet.getInstance(character, getGame()));
+    }
+
+    public Character getCharacter() {
+        return character;
     }
 }

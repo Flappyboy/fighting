@@ -1,7 +1,7 @@
 package cn.edu.nju.software.game.fighting.model;
 
 import cn.edu.nju.software.game.fighting.GameManager;
-import cn.edu.nju.software.game.fighting.model.character.ICharacter;
+import cn.edu.nju.software.game.fighting.model.character.Character;
 import cn.edu.nju.software.game.fighting.model.scenario.concrete.NewCharacterScenario;
 
 public class Game {
@@ -11,7 +11,7 @@ public class Game {
         GameManager.getInstance().changeScenario(NewCharacterScenario.class);
     }
 
-    public void createNewCharacter(ICharacter character) {}
+    public void createNewCharacter(Character character) {}
 
     public void save(){}
 }

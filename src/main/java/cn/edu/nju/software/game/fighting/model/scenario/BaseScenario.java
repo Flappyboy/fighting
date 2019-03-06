@@ -44,4 +44,9 @@ public abstract class BaseScenario implements IScenario{
     }
 
     protected abstract void createCommandSets();
+
+    @Override
+    public void eventHandel(String event, String... params) {
+
+    }
 }

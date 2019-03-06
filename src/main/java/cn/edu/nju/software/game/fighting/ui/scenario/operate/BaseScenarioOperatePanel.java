@@ -2,6 +2,7 @@ package cn.edu.nju.software.game.fighting.ui.scenario.operate;
 
 import cn.edu.nju.software.game.fighting.model.command.CommandSet;
 import cn.edu.nju.software.game.fighting.model.command.ICommand;
+import cn.edu.nju.software.game.fighting.model.scenario.IScenario;
 import cn.edu.nju.software.game.fighting.model.scenario.SharedScenario;
 import cn.edu.nju.software.game.fighting.ui.base.BaseBtn;
 
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class BaseScenarioOperatePanel extends OperatePanel {
 
-    public BaseScenarioOperatePanel(SharedScenario scenario) {
+    public BaseScenarioOperatePanel(IScenario scenario) {
         this.scenario = scenario;
         List<CommandSet> commandSetList =  scenario.getCommandSetList();
 
