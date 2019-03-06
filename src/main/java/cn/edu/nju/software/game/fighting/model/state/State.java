@@ -2,7 +2,7 @@ package cn.edu.nju.software.game.fighting.model.state;
 
 public interface State {
 
-    public void createCharacter();
+    public void createRole();
 
     //访问铁匠铺
     public void visitSmithy();

@@ -11,7 +11,7 @@ public class StateAdapter implements State {
     }
 
     @Override
-    public void createCharacter() {
+    public void createRole() {
         System.out.println("您当前状态无法执行该操作");
     }
 

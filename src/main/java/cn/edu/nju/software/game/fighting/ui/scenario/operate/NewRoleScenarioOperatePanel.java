@@ -1,9 +1,9 @@
 package cn.edu.nju.software.game.fighting.ui.scenario.operate;
 
-import cn.edu.nju.software.game.fighting.model.character.Character;
+import cn.edu.nju.software.game.fighting.model.role.Role;
 import cn.edu.nju.software.game.fighting.model.command.CommandSet;
 import cn.edu.nju.software.game.fighting.model.command.ICommand;
-import cn.edu.nju.software.game.fighting.model.scenario.concrete.NewCharacterScenario;
+import cn.edu.nju.software.game.fighting.model.scenario.concrete.NewRoleScenario;
 import cn.edu.nju.software.game.fighting.ui.base.BaseBtn;
 
 import javax.swing.*;
@@ -14,9 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class NewCharacterScenarioOperatePanel extends OperatePanel {
+public class NewRoleScenarioOperatePanel extends OperatePanel {
 
-    public NewCharacterScenarioOperatePanel(NewCharacterScenario scenario) {
+    public NewRoleScenarioOperatePanel(NewRoleScenario scenario) {
         this.scenario = scenario;
         List<CommandSet> commandSetList =  scenario.getCommandSetList();
         ICommand command = commandSetList.get(0).getCommandIterator().next();
@@ -50,7 +50,7 @@ public class NewCharacterScenarioOperatePanel extends OperatePanel {
         BaseBtn saveBtn = new BaseBtn(command.getCommandName());
         saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Character character = scenario.getCharacter();
+                Role role = scenario.getRole();
                 command.Execute();
             }
         });

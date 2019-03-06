@@ -1,16 +1,16 @@
 package cn.edu.nju.software.game.fighting.model.scenario.concrete;
 
-import cn.edu.nju.software.game.fighting.model.character.Character;
-import cn.edu.nju.software.game.fighting.model.command.NewCharacterCommand.NewCharacterCommandSet;
+import cn.edu.nju.software.game.fighting.model.role.Role;
+import cn.edu.nju.software.game.fighting.model.command.NewRoleCommand.NewRoleCommandSet;
 import cn.edu.nju.software.game.fighting.model.scenario.SharedScenario;
 import cn.edu.nju.software.game.fighting.ui.scenario.operate.BaseScenarioOperatePanel;
 import cn.edu.nju.software.game.fighting.ui.scenario.operate.OperatePanel;
 
-public class NewCharacterScenario extends SharedScenario {
+public class NewRoleScenario extends SharedScenario {
 
-    Character character;
+    Role role;
 
-    public NewCharacterScenario() {
+    public NewRoleScenario() {
         scenarioName = "新建角色";
     }
 
@@ -21,10 +21,10 @@ public class NewCharacterScenario extends SharedScenario {
 
     @Override
     protected void createCommandSets() {
-        commandSetList.add(NewCharacterCommandSet.getInstance(character, getGame()));
+        commandSetList.add(NewRoleCommandSet.getInstance(role, getGame()));
     }
 
-    public Character getCharacter() {
-        return character;
+    public Role getRole() {
+        return role;
     }
 }
