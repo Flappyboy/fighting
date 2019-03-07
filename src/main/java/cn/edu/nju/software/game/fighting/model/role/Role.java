@@ -2,15 +2,20 @@ package cn.edu.nju.software.game.fighting.model.role;
 
 //Bridge pattern
 
+import cn.edu.nju.software.game.fighting.GameManager;
+import cn.edu.nju.software.game.fighting.model.Game;
 import cn.edu.nju.software.game.fighting.model.ability.AttackAbility;
 import cn.edu.nju.software.game.fighting.model.ability.DefenseAbility;
 import cn.edu.nju.software.game.fighting.model.ability.SpecificAbility;
+import cn.edu.nju.software.game.fighting.model.item.equipment.Equipment;
 import cn.edu.nju.software.game.fighting.model.role.attribute.BodyType;
 import cn.edu.nju.software.game.fighting.model.role.attribute.Gender;
 import cn.edu.nju.software.game.fighting.model.role.attribute.Profession;
 import cn.edu.nju.software.game.fighting.model.role.attribute.Race;
 import cn.edu.nju.software.game.fighting.model.role.bag.Bag;
 import cn.edu.nju.software.game.fighting.model.role.equipment.EquipmentList;
+import cn.edu.nju.software.game.fighting.model.role.equipment.exception.FullEquipmentTypeException;
+import cn.edu.nju.software.game.fighting.model.role.equipment.exception.NoEquipmentTypeException;
 
 public class Role {
 
@@ -31,6 +36,14 @@ public class Role {
     AttackAbility attackAbility;
     DefenseAbility defenseAbility;
     SpecificAbility specificAbility;
+
+    public void equip(Equipment equipment){
+
+    }
+
+    public Game getGame(){
+        return GameManager.getInstance().getGameInstance();
+    }
 
     public Bag getBag() {
         return bag;
