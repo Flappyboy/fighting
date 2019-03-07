@@ -3,7 +3,9 @@ package cn.edu.nju.software.game.fighting.model.state;
 import cn.edu.nju.software.game.fighting.model.Game;
 import cn.edu.nju.software.game.fighting.model.state.State;
 
-public class StateAdapter implements State {
+import java.io.Serializable;
+
+public class StateAdapter implements State, Serializable {
     protected Game game;
 
     public StateAdapter(Game game) {

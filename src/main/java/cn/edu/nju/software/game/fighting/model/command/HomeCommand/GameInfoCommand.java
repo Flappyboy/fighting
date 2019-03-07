@@ -5,7 +5,7 @@ import cn.edu.nju.software.game.fighting.model.command.ICommand;
 
 public class GameInfoCommand implements ICommand {
     @Override
-    public String getCommandName() {
+    public String getName() {
         return "相关信息";
     }
 

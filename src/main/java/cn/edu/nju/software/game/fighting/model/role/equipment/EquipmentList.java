@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface EquipmentList {
 
-    void add(Role role, Equipment equipment) throws FullEquipmentTypeException, NoEquipmentTypeException;
+    void add(Equipment equipment) throws FullEquipmentTypeException, NoEquipmentTypeException;
 
-    void remove(Role role, Integer equipmentTypeIndex);
+    Equipment remove(Integer equipmentTypeIndex);
 
     List<EquipmentType> getEquipmentTypeList();
 

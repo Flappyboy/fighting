@@ -1,7 +1,7 @@
 package cn.edu.nju.software.game.fighting;
 
 import cn.edu.nju.software.game.fighting.model.Game;
-import cn.edu.nju.software.game.fighting.model.scenario.IScenario;
+import cn.edu.nju.software.game.fighting.model.scenario.Scenario;
 import cn.edu.nju.software.game.fighting.model.scenario.concrete.HomeScenario;
 import cn.edu.nju.software.game.fighting.model.scenario.ScenarioFactory;
 import cn.edu.nju.software.game.fighting.ui.GameLogPanel;
@@ -17,7 +17,7 @@ public class GameManager {
     private GameLogPanel gameLogPanel;
     private GameOperatePanel gameOperatePanel;
 
-    private IScenario currentScenario;
+    private Scenario currentScenario;
 
     private Game gameInstance;
 
@@ -73,24 +73,24 @@ public class GameManager {
     }
 
     public void startNewGame(){
-        gameInstance = new Game();
-        gameInstance.start();
+        gameInstance = new Game("新的游戏");
+        gameInstance.newStart();
     }
 
     public Game getGameInstance(){
         return gameInstance;
     }
 
-    public void changeScenario(Class<? extends IScenario> scenarioClass)
+    public void changeScenario(Class<? extends Scenario> scenarioClass)
     {
-        IScenario scenario = ScenarioFactory.getScenario(scenarioClass);
+        Scenario scenario = ScenarioFactory.getScenario(scenarioClass);
         changeScenario(scenario);
     }
 
-    private void changeScenario(IScenario scenario)
+    private void changeScenario(Scenario scenario)
     {
         currentScenario = scenario;
-        showLog("\n  "+currentScenario.getScenarioName());
+        showLog("\n  "+currentScenario.getName());
         gameOperatePanel.changeGameOperatePanel(currentScenario.getOperatePanel());
     }
 

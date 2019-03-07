@@ -7,10 +7,10 @@ import cn.edu.nju.software.game.fighting.model.command.CommandSet;
 
 public class NewPlayerCommandSet extends CommandSet {
 
-    public static NewPlayerCommandSet getInstance(Player player, Game game) {
+    public static NewPlayerCommandSet getInstance() {
         NewPlayerCommandSet newPlayerCommandSet = new NewPlayerCommandSet();
 
-        newPlayerCommandSet.addCommand(new NewPlayerCommand(player, game));
+        newPlayerCommandSet.addCommand(new NewPlayerCommand());
 
         return newPlayerCommandSet;
     }

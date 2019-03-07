@@ -8,7 +8,7 @@ import cn.edu.nju.software.game.fighting.ui.scenario.operate.OperatePanel;
 public class HomeScenario extends SharedScenario {
 
     public HomeScenario() {
-        scenarioName = "主菜单";
+        super("主菜单");
     }
 
     @Override

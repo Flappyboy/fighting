@@ -5,21 +5,22 @@ import cn.edu.nju.software.game.fighting.model.role.Role;
 import cn.edu.nju.software.game.fighting.model.role.equipment.exception.FullEquipmentTypeException;
 import cn.edu.nju.software.game.fighting.model.role.equipment.exception.NoEquipmentTypeException;
 
-public abstract class BaseEquipStrategy implements IEquipStrategy {
+import java.io.Serializable;
+
+public class BaseEquipStrategy implements IEquipStrategy, Serializable {
+    private static final long serialVersionUID = -9213383153072807113L;
 
     @Override
-    public void equip(Role role, Equipment equipment) {
-        try {
-            if(canEquip(role, equipment)){
-                role.getEquipmentList().add(role, equipment);
-                role.getGame().say(role.getName()+" 成功装备 "+equipment.getName());
-            }else{
-                role.getGame().say(role.getName()+" 无法装备 "+equipment.getName());
-            }
-        } catch (FullEquipmentTypeException e) {
-            role.getGame().say(e.getMessage());
-        } catch (NoEquipmentTypeException e) {
-            role.getGame().say(e.getMessage());
+    public boolean canEquip(Role role, Equipment equipment) {
+        return true;
+    }
+    @Override
+    public void equip(Role role, Equipment equipment) throws NoEquipmentTypeException, FullEquipmentTypeException {
+        if (canEquip(role, equipment)) {
+            role.getEquipmentList().add(equipment);
+            role.getGame().say(role.getName() + " 成功装备 " + equipment.getName());
+        } else {
+            role.getGame().say(role.getName() + " 无法装备 " + equipment.getName());
         }
     }
 }

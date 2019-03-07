@@ -1,11 +1,14 @@
 package cn.edu.nju.software.game.fighting.model.role.bag;
 
 import cn.edu.nju.software.game.fighting.model.item.Item;
+import cn.edu.nju.software.game.fighting.model.role.equipment.DefaultEquipmentList;
+import cn.edu.nju.software.game.fighting.utils.CloneUtils;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
-public class DefaultBag implements Bag{
+public class DefaultBag implements Bag, Cloneable, Serializable {
     List<Item> itemList;
     @Override
     public void add(Item item) {
@@ -27,6 +30,9 @@ public class DefaultBag implements Bag{
         itemList.remove(i);
     }
 
+    public DefaultBag clone(){
+        return CloneUtils.clone( this);
+    }
 
 
     @Override

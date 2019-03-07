@@ -1,4 +1,4 @@
-package cn.edu.nju.software.game.fighting.model.factory;
+package cn.edu.nju.software.game.fighting.model.factory.mode;
 
 import cn.edu.nju.software.game.fighting.model.item.equipment.Equipment;
 import cn.edu.nju.software.game.fighting.model.item.equipment.weapon.Weapon;
@@ -6,7 +6,7 @@ import cn.edu.nju.software.game.fighting.model.role.Player;
 import cn.edu.nju.software.game.fighting.model.role.Role;
 import cn.edu.nju.software.game.fighting.model.skill.Skill;
 
-public class EasyModeFactory implements ModeFactory {
+public class NormalModeFactory implements ModeFactory {
     @Override
     public Player createPlayer(Player player) {
         return null;
@@ -18,7 +18,7 @@ public class EasyModeFactory implements ModeFactory {
     }
 
     @Override
-    public Weapon createWepon(Weapon weapon) {
+    public Weapon createWeapon(Weapon weapon) {
         return null;
     }
 

@@ -2,22 +2,29 @@ package cn.edu.nju.software.game.fighting.model.role.equipment;
 
 import cn.edu.nju.software.game.fighting.model.item.equipment.Equipment;
 import cn.edu.nju.software.game.fighting.model.item.equipment.EquipmentType;
+import cn.edu.nju.software.game.fighting.model.role.Player;
 import cn.edu.nju.software.game.fighting.model.role.Role;
 import cn.edu.nju.software.game.fighting.model.role.equipment.exception.FullEquipmentTypeException;
 import cn.edu.nju.software.game.fighting.model.role.equipment.exception.NoEquipmentTypeException;
+import cn.edu.nju.software.game.fighting.utils.CloneUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DefaultEquipmentList implements EquipmentList {
+public class DefaultEquipmentList implements EquipmentList, Serializable, Cloneable {
     private Equipment weapon = null;
 
     private Equipment helmet = null;
 
     private Equipment armor = null;
 
+    public DefaultEquipmentList clone(){
+        return CloneUtils.clone( this);
+    }
+
     @Override
-    public void add(Role role, Equipment equipment) throws FullEquipmentTypeException, NoEquipmentTypeException {
+    public void add(Equipment equipment) throws FullEquipmentTypeException, NoEquipmentTypeException {
         switch (equipment.getEquipmentType()){
             case WEAPON:
                 if(weapon != null){
@@ -40,11 +47,10 @@ public class DefaultEquipmentList implements EquipmentList {
             default:
                 throw new NoEquipmentTypeException();
         }
-        role.getBag().remove(equipment);
     }
 
     @Override
-    public void remove(Role role, Integer equipmentTypeIndex) {
+    public Equipment remove(Integer equipmentTypeIndex) {
         Equipment demount = null;
         switch (equipmentTypeIndex){
             case 0:
@@ -62,7 +68,7 @@ public class DefaultEquipmentList implements EquipmentList {
             default:
                 throw new RuntimeException("WRONG: equipmentTypeIndex: "+equipmentTypeIndex);
         }
-        role.getBag().add(demount);
+        return demount;
     }
 
     @Override

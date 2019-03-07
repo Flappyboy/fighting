@@ -5,6 +5,7 @@ import cn.edu.nju.software.game.fighting.model.item.equipment.EquipmentType;
 
 public class Weapon extends Equipment {
 
+    private static final long serialVersionUID = 300066516766564188L;
     WeaponType weaponType;
 
     public Weapon(String name) {

@@ -1,12 +1,12 @@
 package cn.edu.nju.software.game.fighting.model.state.implement;
 
 import cn.edu.nju.software.game.fighting.model.Game;
+import cn.edu.nju.software.game.fighting.model.role.Player;
 import cn.edu.nju.software.game.fighting.model.state.StateAdapter;
 
 public class BeginState extends StateAdapter {
     public BeginState(Game game) {
         super(game);
-
     }
 
     @Override

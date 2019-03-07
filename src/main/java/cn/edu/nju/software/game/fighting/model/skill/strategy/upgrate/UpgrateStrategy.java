@@ -1,4 +1,4 @@
-package cn.edu.nju.software.game.fighting.model.skill.upgrate;
+package cn.edu.nju.software.game.fighting.model.skill.strategy.upgrate;
 
 import cn.edu.nju.software.game.fighting.model.skill.Skill;
 

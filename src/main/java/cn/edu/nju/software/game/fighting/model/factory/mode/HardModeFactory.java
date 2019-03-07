@@ -1,4 +1,4 @@
-package cn.edu.nju.software.game.fighting.model.factory;
+package cn.edu.nju.software.game.fighting.model.factory.mode;
 
 import cn.edu.nju.software.game.fighting.model.item.equipment.Equipment;
 import cn.edu.nju.software.game.fighting.model.item.equipment.weapon.Weapon;
@@ -18,7 +18,7 @@ public class HardModeFactory implements ModeFactory {
     }
 
     @Override
-    public Weapon createWepon(Weapon weapon) {
+    public Weapon createWeapon(Weapon weapon) {
         return null;
     }
 

@@ -3,14 +3,17 @@ package cn.edu.nju.software.game.fighting.model.role.equipment.decorator;
 import cn.edu.nju.software.game.fighting.model.item.equipment.Equipment;
 import cn.edu.nju.software.game.fighting.model.item.equipment.EquipmentType;
 import cn.edu.nju.software.game.fighting.model.role.Role;
+import cn.edu.nju.software.game.fighting.model.role.equipment.DefaultEquipmentList;
 import cn.edu.nju.software.game.fighting.model.role.equipment.EquipmentList;
 import cn.edu.nju.software.game.fighting.model.role.equipment.exception.FullEquipmentTypeException;
 import cn.edu.nju.software.game.fighting.model.role.equipment.exception.NoEquipmentTypeException;
+import cn.edu.nju.software.game.fighting.utils.CloneUtils;
 
+import java.io.Serializable;
 import java.util.List;
 
 //Decorator pattern
-public abstract class EquipmentListDecorator implements EquipmentList {
+public abstract class EquipmentListDecorator implements EquipmentList, Serializable {
     protected EquipmentList equipmentList;
 
     public EquipmentListDecorator(EquipmentList equipmentList) {
@@ -20,27 +23,34 @@ public abstract class EquipmentListDecorator implements EquipmentList {
     protected EquipmentType equipmentType;
     protected Equipment equipment;
 
+    public EquipmentListDecorator clone(){
+        return CloneUtils.clone( this);
+    }
+
+
     @Override
-    public void add(Role role, Equipment equipment) throws NoEquipmentTypeException, FullEquipmentTypeException {
+    public void add(Equipment equipment) throws NoEquipmentTypeException, FullEquipmentTypeException {
         if(equipment.getEquipmentType().equals(equipmentType)){
             if(this.equipment == null){
                 this.equipment = equipment;
                 return;
             }
         }
-        equipmentList.add(role, equipment);
+        equipmentList.add(equipment);
     }
 
     @Override
-    public void remove(Role role, Integer equipmentTypeIndex) {
+    public Equipment remove(Integer equipmentTypeIndex) {
+        Equipment tmp;
         if(equipmentTypeIndex == equipmentList.getEquipmentTypeList().size()){
-            role.getBag().add(this.equipment);
+            tmp = this.equipment;
             this.equipment = null;
         }else if(equipmentTypeIndex < equipmentList.getEquipmentTypeList().size()){
-            this.equipmentList.remove(role, equipmentTypeIndex);
+            tmp = this.equipmentList.remove(equipmentTypeIndex);
         }else{
             throw new RuntimeException("WRONG: equipmentTypeIndex: "+equipmentTypeIndex);
         }
+        return tmp;
     }
 
     @Override

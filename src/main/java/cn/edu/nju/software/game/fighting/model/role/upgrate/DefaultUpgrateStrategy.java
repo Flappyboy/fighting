@@ -2,7 +2,9 @@ package cn.edu.nju.software.game.fighting.model.role.upgrate;
 
 import cn.edu.nju.software.game.fighting.model.role.Role;
 
-public class DefaultUpgrateStrategy implements UpgrateStrategy{
+import java.io.Serializable;
+
+public class DefaultUpgrateStrategy implements UpgrateStrategy, Serializable {
 
     private int baseExp = 10;
 

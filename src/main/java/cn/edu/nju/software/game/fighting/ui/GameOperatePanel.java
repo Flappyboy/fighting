@@ -23,7 +23,7 @@ public class GameOperatePanel extends JTabbedPane {
     public void changeGameOperatePanel(OperatePanel operatePanel)
     {
         gamePanel.removeAll();
-        JLabel jLabel = new JLabel(operatePanel.getScenario().getScenarioName());
+        JLabel jLabel = new JLabel(operatePanel.getScenario().getName());
         gamePanel.add(jLabel, BorderLayout.NORTH);
         gamePanel.add(operatePanel, BorderLayout.CENTER);
         gamePanel.validate();

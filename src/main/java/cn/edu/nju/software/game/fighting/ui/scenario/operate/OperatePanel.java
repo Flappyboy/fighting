@@ -1,13 +1,13 @@
 package cn.edu.nju.software.game.fighting.ui.scenario.operate;
 
-import cn.edu.nju.software.game.fighting.model.scenario.IScenario;
+import cn.edu.nju.software.game.fighting.model.scenario.Scenario;
 
 import javax.swing.*;
 
 public abstract class OperatePanel extends JPanel {
-    IScenario scenario;
+    Scenario scenario;
 
-    public IScenario getScenario() {
+    public Scenario getScenario() {
         return scenario;
     }
 }

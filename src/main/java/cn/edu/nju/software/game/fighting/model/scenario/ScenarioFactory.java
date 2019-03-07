@@ -7,7 +7,7 @@ public class ScenarioFactory {
 
     private static final Map<Class<? extends SharedScenario>, SharedScenario> scenarioMap = new HashMap<>();
 
-    public static IScenario getScenario(Class<? extends IScenario> scenarioClass)
+    public static Scenario getScenario(Class<? extends Scenario> scenarioClass)
     {
         if(SharedScenario.class.isAssignableFrom(scenarioClass)){
             return getSharedScenario(scenarioClass);
