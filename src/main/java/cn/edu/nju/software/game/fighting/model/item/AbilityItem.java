@@ -3,6 +3,7 @@ package cn.edu.nju.software.game.fighting.model.item;
 import cn.edu.nju.software.game.fighting.model.ability.AttackAbility;
 import cn.edu.nju.software.game.fighting.model.ability.DefenseAbility;
 import cn.edu.nju.software.game.fighting.model.ability.SpecificAbility;
+import cn.edu.nju.software.game.fighting.model.role.attribute.State;
 
 public abstract class AbilityItem extends Item{
 
@@ -14,6 +15,20 @@ public abstract class AbilityItem extends Item{
 
     public AbilityItem(String name) {
         super(name);
+    }
+
+    @Override
+    public String getDesc() {
+        String str="";
+        if(getAttackAbility().getPhysical()!=0)
+            str+=" 攻："+ getAttackAbility().getPhysical();
+        if(getDefenseAbility().getPhysical()!=0)
+            str+=" 防："+ getDefenseAbility().getPhysical();
+        for(State state: State.allState()){
+            if(getSpecificAbility().getAbilityValue(state)>0)
+                str+="  "+getDefenseAbility().getPhysical();
+        }
+        return str;
     }
 
     public AttackAbility getAttackAbility() {

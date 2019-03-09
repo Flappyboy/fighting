@@ -9,7 +9,10 @@ import cn.edu.nju.software.game.fighting.model.ability.SpecificAbility;
 import cn.edu.nju.software.game.fighting.model.item.equipment.Equipment;
 import cn.edu.nju.software.game.fighting.model.role.attribute.*;
 import cn.edu.nju.software.game.fighting.model.role.bag.Bag;
+import cn.edu.nju.software.game.fighting.model.role.bag.DefaultBag;
+import cn.edu.nju.software.game.fighting.model.role.equipment.DefaultEquipmentList;
 import cn.edu.nju.software.game.fighting.model.role.equipment.EquipmentList;
+import cn.edu.nju.software.game.fighting.model.role.skill.DefaultSkillList;
 import cn.edu.nju.software.game.fighting.model.role.skill.SkillList;
 import cn.edu.nju.software.game.fighting.model.skill.Skill;
 import cn.edu.nju.software.game.fighting.utils.CloneUtils;
@@ -38,16 +41,20 @@ public class Role extends GameElement {
 
     State state = State.NORMAL;
 
-    Bag bag;
-    EquipmentList equipmentList;
+    Bag bag = new DefaultBag();
+    EquipmentList equipmentList = new DefaultEquipmentList();
 
-    SkillList skillList;
+    SkillList skillList = new DefaultSkillList();
 
     AttackAbility attackAbility;
     DefenseAbility defenseAbility;
     SpecificAbility specificAbility;
 
 
+    @Override
+    public String getDesc() {
+        return "角色："+name;
+    }
 
     public Role(String name) {
         super(name);

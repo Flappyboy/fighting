@@ -4,6 +4,10 @@ import cn.edu.nju.software.game.fighting.model.command.CommandSet;
 
 public class HomeCommandSet extends CommandSet {
 
+    public HomeCommandSet() {
+        super("主页");
+    }
+
     public static HomeCommandSet getInstance() {
         HomeCommandSet homeCommandSet = new HomeCommandSet();
 

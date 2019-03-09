@@ -6,7 +6,11 @@ import java.util.List;
 
 public abstract class CommandSet {
 
-    private String commandSetName;
+    private String name;
+
+    public CommandSet(String name) {
+        this.name = name;
+    }
 
     List<ICommand> commandList = new ArrayList<>();
 
@@ -18,7 +22,7 @@ public abstract class CommandSet {
         return commandList.iterator();
     }
 
-    public String getCommandSetName() {
-        return commandSetName;
+    public String getName() {
+        return name;
     }
 }

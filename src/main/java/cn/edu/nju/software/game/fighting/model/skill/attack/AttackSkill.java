@@ -4,27 +4,27 @@ import cn.edu.nju.software.game.fighting.model.Game;
 import cn.edu.nju.software.game.fighting.model.ability.AttackAbility;
 import cn.edu.nju.software.game.fighting.model.ability.SpecificAbility;
 import cn.edu.nju.software.game.fighting.model.role.Role;
+import cn.edu.nju.software.game.fighting.model.role.attribute.Profession;
 import cn.edu.nju.software.game.fighting.model.skill.Skill;
 import cn.edu.nju.software.game.fighting.utils.CloneUtils;
 
 public class AttackSkill extends Skill {
 
-    AttackAbility attackAbility;
+    private AttackAbility attackAbility = new AttackAbility();
 
-    SpecificAbility specificAbility;
+    private SpecificAbility specificAbility = new SpecificAbility();
 
     //策略模式
-    AttackStrategy attackStrategy;
+    private AttackStrategy attackStrategy = new PhysicalAttackStrategy();
 
-    public AttackSkill(String name) {
-        super(name);
+    public AttackSkill(String name, Profession profession) {
+        super(name, profession);
     }
 
-    public AttackSkill(String name, AttackAbility attackAbility, SpecificAbility specificAbility, AttackStrategy attackStrategy) {
-        super(name);
-        this.attackAbility = attackAbility;
-        this.specificAbility = specificAbility;
-        this.attackStrategy = attackStrategy;
+    public static AttackSkill instanceWithAtk(String name, Profession profession, AttackAbility attackAbility){
+        AttackSkill attackSkill = new AttackSkill(name, profession);
+        attackSkill.setAttackAbility(attackAbility);
+        return attackSkill;
     }
 
     public AttackSkill clone(){
@@ -58,5 +58,10 @@ public class AttackSkill extends Skill {
 
     public void setAttackStrategy(AttackStrategy attackStrategy) {
         this.attackStrategy = attackStrategy;
+    }
+
+    @Override
+    public String getDesc() {
+        return "攻击技能： "+name;
     }
 }

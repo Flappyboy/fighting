@@ -1,9 +1,12 @@
 package cn.edu.nju.software.game.fighting;
 
 import cn.edu.nju.software.game.fighting.model.Game;
+import cn.edu.nju.software.game.fighting.model.IGameBuilder;
 import cn.edu.nju.software.game.fighting.model.scenario.Scenario;
 import cn.edu.nju.software.game.fighting.model.scenario.concrete.HomeScenario;
 import cn.edu.nju.software.game.fighting.model.scenario.ScenarioFactory;
+import cn.edu.nju.software.game.fighting.model.skill.SkillFactory;
+import cn.edu.nju.software.game.fighting.model.skill.attack.AttackSkillFactory;
 import cn.edu.nju.software.game.fighting.ui.GameLogPanel;
 import cn.edu.nju.software.game.fighting.ui.GameOperatePanel;
 
@@ -18,6 +21,8 @@ public class GameManager {
     private GameOperatePanel gameOperatePanel;
 
     private Scenario currentScenario;
+
+    IGameBuilder gameBuilder;
 
     private Game gameInstance;
 
@@ -73,8 +78,9 @@ public class GameManager {
     }
 
     public void startNewGame(){
-        gameInstance = new Game("新的游戏");
-        gameInstance.newStart();
+        gameBuilder.buildState();
+        gameInstance = gameBuilder.result();
+        gameInstance.start();
     }
 
     public Game getGameInstance(){
@@ -113,6 +119,22 @@ public class GameManager {
     public void showLog(String str)
     {
         gameLogPanel.addLog(str);
+    }
+
+    public IGameBuilder getGameBuilder() {
+        return gameBuilder;
+    }
+
+    public void setGameBuilder(IGameBuilder gameBuilder) {
+        this.gameBuilder = gameBuilder;
+    }
+
+    public JFrame getMainFrame() {
+        return mainFrame;
+    }
+
+    public GameOperatePanel getGameOperatePanel() {
+        return gameOperatePanel;
     }
 
     public static void main(String[] agrs)

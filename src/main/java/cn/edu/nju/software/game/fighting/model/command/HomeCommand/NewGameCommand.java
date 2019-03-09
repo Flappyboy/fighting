@@ -1,16 +1,19 @@
 package cn.edu.nju.software.game.fighting.model.command.HomeCommand;
 
 import cn.edu.nju.software.game.fighting.GameManager;
-import cn.edu.nju.software.game.fighting.model.command.ICommand;
+import cn.edu.nju.software.game.fighting.model.command.GameCommand;
+import cn.edu.nju.software.game.fighting.model.scenario.concrete.BuildGameScenario;
 
-public class NewGameCommand implements ICommand {
-    @Override
-    public String getName() {
-        return "新的游戏";
+import java.util.List;
+import java.util.Map;
+
+public class NewGameCommand extends GameCommand {
+    public NewGameCommand() {
+        super("新的游戏");
     }
 
     @Override
-    public void Execute() {
-        GameManager.getInstance().startNewGame();
+    public void Execute(Map<Object, Object> objects) {
+        GameManager.getInstance().changeScenario(BuildGameScenario.class);
     }
 }

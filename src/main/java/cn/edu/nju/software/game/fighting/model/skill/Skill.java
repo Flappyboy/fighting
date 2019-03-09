@@ -4,22 +4,24 @@ import cn.edu.nju.software.game.fighting.model.Game;
 import cn.edu.nju.software.game.fighting.model.GameElement;
 import cn.edu.nju.software.game.fighting.model.role.Role;
 import cn.edu.nju.software.game.fighting.model.role.attribute.Profession;
+import cn.edu.nju.software.game.fighting.model.skill.strategy.upgrate.DefaultUpgrateStrategy;
 import cn.edu.nju.software.game.fighting.model.skill.strategy.upgrate.UpgrateStrategy;
 import cn.edu.nju.software.game.fighting.utils.CloneUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public abstract class Skill extends GameElement{
-    private Integer level;
+    private Integer level = 0;
 
-    private Integer exp;
+    private Integer exp = 0;
 
-    private UpgrateStrategy upgrateStrategy;
+    private UpgrateStrategy upgrateStrategy = new DefaultUpgrateStrategy();
 
     private Profession profession;
 
-    public Skill(String name) {
+    public Skill(String name, Profession profession) {
         super(name);
+        this.profession = profession;
     }
 
     public Skill clone(){

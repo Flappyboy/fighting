@@ -7,6 +7,10 @@ import javax.swing.*;
 public abstract class OperatePanel extends JPanel {
     Scenario scenario;
 
+    public OperatePanel(Scenario scenario) {
+        this.scenario = scenario;
+    }
+
     public Scenario getScenario() {
         return scenario;
     }

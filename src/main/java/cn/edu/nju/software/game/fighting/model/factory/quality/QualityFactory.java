@@ -1,4 +1,4 @@
-package cn.edu.nju.software.game.fighting.model.factory.mode;
+package cn.edu.nju.software.game.fighting.model.factory.quality;
 
 import cn.edu.nju.software.game.fighting.model.item.equipment.Equipment;
 import cn.edu.nju.software.game.fighting.model.item.equipment.weapon.Weapon;
@@ -6,7 +6,7 @@ import cn.edu.nju.software.game.fighting.model.role.Player;
 import cn.edu.nju.software.game.fighting.model.role.Role;
 import cn.edu.nju.software.game.fighting.model.skill.Skill;
 
-public interface ModeFactory {
+public interface QualityFactory {
 
     Player createPlayer(Player player);
 

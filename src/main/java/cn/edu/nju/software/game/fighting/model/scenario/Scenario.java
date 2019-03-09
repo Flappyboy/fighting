@@ -38,4 +38,9 @@ public abstract class Scenario extends GameElement{
     public void eventHandel(String event, String... params) {
 
     }
+
+    @Override
+    public String getDesc() {
+        return "场景"+name;
+    }
 }

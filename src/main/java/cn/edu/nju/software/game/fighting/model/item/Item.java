@@ -9,6 +9,8 @@ public abstract class Item extends GameElement {
         super(name);
     }
 
+    public abstract void use();
+
     public String getName() {
         return name;
     }

@@ -13,12 +13,14 @@ public class AttackAbility {
         return physical;
     }
 
-    public void addPhysical(Integer physical) {
+    public AttackAbility addPhysical(Integer physical) {
         this.physical += physical;
+        return this;
     }
 
-    public void attachAbility(AttackAbility attach){
+    public AttackAbility attachAbility(AttackAbility attach){
         addPhysical(attach.getPhysical());
+        return this;
     }
 
     public static AttackAbility combineAbilitys(AttackAbility ...abilitys){

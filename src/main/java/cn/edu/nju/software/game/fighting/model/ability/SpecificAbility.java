@@ -29,9 +29,9 @@ public class SpecificAbility {
         return value;
     }
 
-    public void addAbilityValue(State state, float increment) {
+    public SpecificAbility addAbilityValue(State state, float increment) {
         if(increment==0)
-            return;
+            return this;
 
         float value = getAbilityValue(state);
         if(value == 0){
@@ -46,12 +46,14 @@ public class SpecificAbility {
         }else{
             stateMap.put(state, value);
         }
+        return this;
     }
 
-    public void attachAbility(SpecificAbility attach){
+    public SpecificAbility attachAbility(SpecificAbility attach){
         for(State state: State.allState()){
             addAbilityValue(state, attach.getAbilityValue(state));
         }
+        return this;
     }
 
     public static SpecificAbility combineAbilitys(SpecificAbility ...abilitys){

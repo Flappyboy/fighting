@@ -15,7 +15,7 @@ public class GameLogPanel extends JPanel {
         add(jLabel, BorderLayout.NORTH);
 
 
-        jTextArea = new JTextArea("游戏开始\n",20,80);
+        jTextArea = new JTextArea("欢迎！！！\n",20,80);
         jTextArea.setLineWrap(true);
         jTextArea.setForeground(Color.BLACK);
         jTextArea.setFont(new Font("楷体",Font.BOLD,16));

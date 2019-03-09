@@ -5,7 +5,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 public abstract class GameElement implements Serializable, Cloneable {
     protected transient Game game;
@@ -19,6 +18,8 @@ public abstract class GameElement implements Serializable, Cloneable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public abstract String getDesc();
 
     public GameElement(String name) {
         this.name = name;

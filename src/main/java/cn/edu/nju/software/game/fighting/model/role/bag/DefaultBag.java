@@ -5,11 +5,12 @@ import cn.edu.nju.software.game.fighting.model.role.equipment.DefaultEquipmentLi
 import cn.edu.nju.software.game.fighting.utils.CloneUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class DefaultBag implements Bag, Cloneable, Serializable {
-    List<Item> itemList;
+    List<Item> itemList = new ArrayList<>();
     @Override
     public void add(Item item) {
         itemList.add(item);

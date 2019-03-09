@@ -1,7 +1,8 @@
 package cn.edu.nju.software.game.fighting.model;
 
 import cn.edu.nju.software.game.fighting.GameManager;
-import cn.edu.nju.software.game.fighting.model.role.Player;
+import cn.edu.nju.software.game.fighting.model.factory.quality.QualityFactory;
+import cn.edu.nju.software.game.fighting.model.role.Role;
 import cn.edu.nju.software.game.fighting.model.scenario.Scenario;
 import cn.edu.nju.software.game.fighting.model.scenario.concrete.*;
 import cn.edu.nju.software.game.fighting.model.state.State;
@@ -13,16 +14,21 @@ import java.util.HashMap;
 public class Game extends GameElement{
     private State state;
 
-    private Player player;
+    private State initState;
+
+    private Role player;
 
     private transient Scenario scenario;
 
-    public static HashMap<Class<? extends State>, Class<? extends Scenario>> StateScenarioMap =
+    private QualityFactory playerGameElementFactory;
+    private QualityFactory enemyGameElementFactory;
+
+    public final static HashMap<Class<? extends State>, Class<? extends Scenario>> StateScenarioMap =
             new HashMap<Class<? extends State>, Class<? extends Scenario>>(){
                 {
-                    put(BeginState.class, NewPlayerScenario.class);
+//                    put(BeginState.class, NewPlayerScenario.class);
                     put(SmithyState.class, SmithyScenario.class);
-                    put(SceneState.class, ForestScenario.class);
+                    put(ForestState.class, ForestScenario.class);
                     put(MyTurnState.class, FightScenario.class);
                 }
     };
@@ -31,16 +37,17 @@ public class Game extends GameElement{
         return CloneUtils.clone( this);
     }
 
-    public void reload(){
+    public void start(){
+        setState(initState);
+    }
 
+    @Override
+    public String getDesc() {
+        return "游戏："+name;
     }
 
     public Game(String name) {
         super(name);
-    }
-
-    public void newStart() {
-        state = new BeginState(this);
     }
 
     public void save() {
@@ -56,17 +63,17 @@ public class Game extends GameElement{
 
     public void setState(State state) {
         Class<? extends Scenario> scenarioClass = StateScenarioMap.get(state.getClass());
-        if (scenarioClass != null && !scenarioClass.equals(scenario.getClass())){
+        if (scenario==null || (scenarioClass != null && !scenarioClass.equals(scenario.getClass()))){
             GameManager.getInstance().changeScenario(scenarioClass);
         }
         this.state = state;
     }
 
-    public Player getPlayer() {
+    public Role getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    public void setPlayer(Role player) {
         this.player = player;
     }
 
@@ -76,5 +83,29 @@ public class Game extends GameElement{
 
     public void setScenario(Scenario scenario) {
         this.scenario = scenario;
+    }
+
+    public QualityFactory getPlayerGameElementFactory() {
+        return playerGameElementFactory;
+    }
+
+    public void setPlayerGameElementFactory(QualityFactory playerGameElementFactory) {
+        this.playerGameElementFactory = playerGameElementFactory;
+    }
+
+    public QualityFactory getEnemyGameElementFactory() {
+        return enemyGameElementFactory;
+    }
+
+    public void setEnemyGameElementFactory(QualityFactory enemyGameElementFactory) {
+        this.enemyGameElementFactory = enemyGameElementFactory;
+    }
+
+    public State getInitState() {
+        return initState;
+    }
+
+    public void setInitState(State initState) {
+        this.initState = initState;
     }
 }

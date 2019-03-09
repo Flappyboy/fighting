@@ -2,6 +2,7 @@ package cn.edu.nju.software.game.fighting.model.item.equipment.weapon;
 
 import cn.edu.nju.software.game.fighting.model.item.equipment.Equipment;
 import cn.edu.nju.software.game.fighting.model.item.equipment.EquipmentType;
+import cn.edu.nju.software.game.fighting.utils.CloneUtils;
 
 public class Weapon extends Equipment {
 
@@ -11,6 +12,10 @@ public class Weapon extends Equipment {
     public Weapon(String name) {
         super(name);
         setEquipmentType(EquipmentType.WEAPON);
+    }
+
+    public Weapon clone(){
+        return CloneUtils.clone( this);
     }
 
     public WeaponType getWeaponType() {

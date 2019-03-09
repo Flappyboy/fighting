@@ -16,7 +16,7 @@ public class BattleOverState extends StateAdapter {
         if (dead) {
             game.setState(new BeginState(game));
         } else {
-            game.setState(new SceneState(game));
+            game.setState(new ForestState(game));
         }
     }
 }

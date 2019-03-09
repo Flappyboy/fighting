@@ -5,10 +5,10 @@ import cn.edu.nju.software.game.fighting.model.state.StateAdapter;
 
 import java.util.Random;
 
-public class SceneState extends StateAdapter {
+public class ForestState extends StateAdapter {
     Random random = new Random();
 
-    public SceneState(Game game) {
+    public ForestState(Game game) {
         super(game);
     }
 
