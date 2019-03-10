@@ -28,7 +28,7 @@ public class DefaultSkillList implements SkillList, Serializable, Cloneable {
     }
 
     @Override
-    public List<Skill> getSkillList(Skill skill) {
+    public List<Skill> getSkillList() {
         List<Skill> result = new ArrayList<>(skillList);
         return result;
     }

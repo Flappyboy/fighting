@@ -15,5 +15,5 @@ public interface SkillList {
 
     void remove(Integer index);
 
-    List<Skill> getSkillList(Skill skill);
+    List<Skill> getSkillList();
 }

@@ -28,6 +28,8 @@ public class RadioBtnPanel<T> extends OperateElementPanel{
             buttonGroup.add(btn);
             box.add(btn);
         }
+        buttonGroup.getElements().nextElement().setSelected(true);
+        selected = objectss.get(buttonGroup.getElements().nextElement().getText());
     }
 
     @Override

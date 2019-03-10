@@ -7,22 +7,20 @@ import cn.edu.nju.software.game.fighting.model.item.equipment.Equipment;
 import cn.edu.nju.software.game.fighting.model.item.intensify.IntensifyMaterial;
 import cn.edu.nju.software.game.fighting.model.role.attribute.State;
 
-public class BaseIntensifyStrategy implements IIntensifyStrategy{
+import java.io.Serializable;
+
+public class BaseIntensifyStrategy implements IIntensifyStrategy, Serializable {
 
     @Override
-    public void intensify(Equipment target, IntensifyMaterial... materials) {
+    public void intensify(Equipment target, IntensifyMaterial material) {
 
-        for (IntensifyMaterial material :
-                materials) {
-            if (!canIntensify(target, material)){
-                target.getGame().say("");
-            }
-            intensifyAttackAbility(target.getAttackAbility(), material.getAttackAbility());
-            intensifyDefenseAbility(target.getDefenseAbility(), material.getDefenseAbility());
-            intensifySpecificAbility(target.getSpecificAbility(), material.getSpecificAbility());
+        if (!canIntensify(target, material)){
+            target.say("");
         }
-        target.getGame().say(target.getName()+" 强化成功");
-
+        intensifyAttackAbility(target.getAttackAbility(), material.getAttackAbility());
+        intensifyDefenseAbility(target.getDefenseAbility(), material.getDefenseAbility());
+        intensifySpecificAbility(target.getSpecificAbility(), material.getSpecificAbility());
+        target.say(target.getName()+" 强化成功");
     }
 
     @Override

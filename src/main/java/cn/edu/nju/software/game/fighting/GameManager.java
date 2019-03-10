@@ -87,16 +87,21 @@ public class GameManager {
         return gameInstance;
     }
 
-    public void changeScenario(Class<? extends Scenario> scenarioClass)
+    public Scenario changeScenario(Class<? extends Scenario> scenarioClass)
     {
-        Scenario scenario = ScenarioFactory.getScenario(scenarioClass);
+        return changeScenario(scenarioClass, false);
+    }
+    public Scenario changeScenario(Class<? extends Scenario> scenarioClass, boolean refresh)
+    {
+        Scenario scenario = ScenarioFactory.getScenario(scenarioClass, refresh);
         changeScenario(scenario);
+        return scenario;
     }
 
     private void changeScenario(Scenario scenario)
     {
         currentScenario = scenario;
-        showLog("\n  "+currentScenario.getName());
+//        showLog("\n  "+currentScenario.getName());
         gameOperatePanel.changeGameOperatePanel(currentScenario.getOperatePanel());
     }
 
@@ -104,6 +109,10 @@ public class GameManager {
     {
         gameOperatePanel.setSelectedIndex(0);
         changeScenario(HomeScenario.class);
+    }
+
+    public GameLogPanel getGameLogPanel() {
+        return gameLogPanel;
     }
 
     public void stop(){

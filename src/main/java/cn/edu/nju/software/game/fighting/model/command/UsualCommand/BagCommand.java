@@ -11,7 +11,7 @@ import java.util.Vector;
 
 public class BagCommand extends GameCommand {
     public BagCommand() {
-        super("装备/使用");
+        super("装备-使用");
 
         Vector<Vector> data = new Vector<>();
         Vector<String> columns = new Vector<>();
@@ -19,7 +19,7 @@ public class BagCommand extends GameCommand {
         columns.add("物品");
         columns.add("描述");
 
-        Iterator<Item> itemIterator = game.getPlayer().getBag().iterator();
+        Iterator<Item> itemIterator = getGame().getPlayer().getBag().iterator();
 
         while (itemIterator.hasNext()){
             Item item = itemIterator.next();
@@ -36,14 +36,6 @@ public class BagCommand extends GameCommand {
     @Override
     public void Execute(Map<Object, Object> objects) {
         Item item = (Item) objects.get(Item.class);
-        item.use();
+        item.use(getGame().getPlayer());
     }
-
-
-//    @Override
-//    public void Execute(Object ) {
-//        GameManager.getInstance().startNewGame();
-//    }
-
-
 }

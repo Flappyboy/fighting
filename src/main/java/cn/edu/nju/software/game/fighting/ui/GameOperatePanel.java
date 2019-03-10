@@ -9,6 +9,8 @@ public class GameOperatePanel extends JTabbedPane {
 
     JPanel gamePanel;
 
+    OperatePanel operatePanel;
+
     public GameOperatePanel() {
         setBorder(BorderFactory.createEtchedBorder());
 
@@ -28,5 +30,6 @@ public class GameOperatePanel extends JTabbedPane {
         gamePanel.add(operatePanel, BorderLayout.CENTER);
         gamePanel.validate();
         gamePanel.repaint();
+        this.operatePanel = operatePanel;
     }
 }

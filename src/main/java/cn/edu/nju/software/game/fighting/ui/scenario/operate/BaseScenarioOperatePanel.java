@@ -15,9 +15,17 @@ public class BaseScenarioOperatePanel extends OperatePanel {
 
     JTabbedPane jTabbedPane;
 
-    public BaseScenarioOperatePanel(Scenario scenario) {
+    public BaseScenarioOperatePanel(Scenario scenario, int tab) {
         super(scenario);
-        init(scenario.getCommandSetList());
+        init(scenario.getCommandSetList(), tab);
+    }
+
+    @Override
+    public int getTab() {
+        if(jTabbedPane != null){
+            return jTabbedPane.getSelectedIndex();
+        }
+        return 0;
     }
 
     public BaseScenarioOperatePanel(CommandSet commandSet, Scenario scenario) {
@@ -25,8 +33,9 @@ public class BaseScenarioOperatePanel extends OperatePanel {
         init(commandSet);
     }
 
-    public void init(List<CommandSet> commandSetList) {
+    public void init(List<CommandSet> commandSetList, int tab) {
         if(commandSetList.size()==1){
+            jTabbedPane = null;
             Box box = new Box(BoxLayout.Y_AXIS);
             add(box);
             init(commandSetList.get(0));
@@ -38,6 +47,7 @@ public class BaseScenarioOperatePanel extends OperatePanel {
                     commandSetList) {
                 jTabbedPane.add(processTitle(commandSet.getName()), new BaseScenarioOperatePanel(commandSet, scenario));
             }
+            jTabbedPane.setSelectedIndex(tab);
             add(jTabbedPane);
         }
     }

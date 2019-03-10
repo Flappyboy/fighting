@@ -13,7 +13,7 @@ public class RadioTableCommand extends GameCommand {
         super("继续游戏");
 
 
-        put(TextPanel.class, new TextPanel("请输入："));
+        put(TextPanel.class, new TextPanel("请输入：", ""));
 
         Vector<Vector> data = new Vector<>();
         Vector<String> columns = new Vector<>();

@@ -12,10 +12,6 @@ public class HomeScenario extends SharedScenario {
         super("主菜单");
     }
 
-    @Override
-    protected OperatePanel createOperatePanel() {
-        return new BaseScenarioOperatePanel(this);
-    }
 
     @Override
     protected void createCommandSets() {

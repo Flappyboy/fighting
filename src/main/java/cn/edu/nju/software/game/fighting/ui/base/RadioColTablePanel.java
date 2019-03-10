@@ -1,10 +1,13 @@
 package cn.edu.nju.software.game.fighting.ui.base;
 
 import cn.edu.nju.software.game.fighting.GameManager;
+import cn.edu.nju.software.game.fighting.model.GameElement;
 import cn.edu.nju.software.game.fighting.ui.base.tablemodel.BaseTableModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
 public class RadioColTablePanel<T> extends OperateElementPanel{
@@ -18,6 +21,37 @@ public class RadioColTablePanel<T> extends OperateElementPanel{
         this.returnObjs= returnObjs;
         baseTableModel = new BaseTableModel<T>(data, columnNames);
         table = new JTable(baseTableModel);
+        table.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int s = table.getSelectedRow();
+                if(s>=0){
+                    if(returnObjs.get(s) instanceof GameElement){
+                        GameManager.getInstance().showLog(((GameElement)returnObjs.get(s)).getDesc());
+                    }
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
 
         for(int i=0; i<columnNames.size(); i++){
             table.getColumnModel().getColumn(i).setPreferredWidth(widths[i]);

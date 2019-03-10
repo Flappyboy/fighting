@@ -13,6 +13,6 @@ public class GoToSmithyCommand extends GameCommand {
 
     @Override
     public void Execute(Map<Object, Object> objects) {
-        GameManager.getInstance().changeScenario(SmithyScenario.class);
+        getGame().visitSmithy();
     }
 }

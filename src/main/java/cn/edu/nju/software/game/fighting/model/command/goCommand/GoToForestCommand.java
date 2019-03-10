@@ -8,11 +8,11 @@ import java.util.Map;
 
 public class GoToForestCommand extends GameCommand {
     public GoToForestCommand() {
-        super("去野外");
+        super("去森林");
     }
 
     @Override
     public void Execute(Map<Object, Object> objects) {
-        GameManager.getInstance().changeScenario(ForestScenario.class);
+        getGame().visitForest();
     }
 }

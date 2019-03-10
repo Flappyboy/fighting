@@ -6,10 +6,10 @@ import java.awt.*;
 public class TextPanel extends OperateElementPanel{
 
     JTextField jTextField;
-    public TextPanel(String title) {
+    public TextPanel(String title, String defaultValue) {
         JLabel jLabel = new JLabel(title);
         add(jLabel);
-        jTextField = new JTextField();
+        jTextField = new JTextField(defaultValue);
         jTextField.setColumns(10);
         jTextField.setFont(new Font("楷体",Font.BOLD,16));
         jTextField.setBackground(Color.WHITE);

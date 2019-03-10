@@ -2,9 +2,11 @@ package cn.edu.nju.software.game.fighting.model;
 
 import cn.edu.nju.software.game.fighting.GameManager;
 import cn.edu.nju.software.game.fighting.model.factory.quality.QualityFactory;
+import cn.edu.nju.software.game.fighting.model.item.Item;
 import cn.edu.nju.software.game.fighting.model.role.Role;
 import cn.edu.nju.software.game.fighting.model.scenario.Scenario;
 import cn.edu.nju.software.game.fighting.model.scenario.concrete.*;
+import cn.edu.nju.software.game.fighting.model.skill.Skill;
 import cn.edu.nju.software.game.fighting.model.state.State;
 import cn.edu.nju.software.game.fighting.model.state.implement.*;
 import cn.edu.nju.software.game.fighting.utils.CloneUtils;
@@ -18,6 +20,8 @@ public class Game extends GameElement{
 
     private Role player;
 
+    private Role enemy;
+
     private transient Scenario scenario;
 
     private QualityFactory playerGameElementFactory;
@@ -26,10 +30,12 @@ public class Game extends GameElement{
     public final static HashMap<Class<? extends State>, Class<? extends Scenario>> StateScenarioMap =
             new HashMap<Class<? extends State>, Class<? extends Scenario>>(){
                 {
-//                    put(BeginState.class, NewPlayerScenario.class);
+                    put(BeginState.class, NewPlayerScenario.class);
                     put(SmithyState.class, SmithyScenario.class);
                     put(ForestState.class, ForestScenario.class);
                     put(MyTurnState.class, FightScenario.class);
+                    put(EnemyTurnState.class, FightScenario.class);
+                    put(GameOverState.class, HomeScenario.class);
                 }
     };
 
@@ -63,8 +69,8 @@ public class Game extends GameElement{
 
     public void setState(State state) {
         Class<? extends Scenario> scenarioClass = StateScenarioMap.get(state.getClass());
-        if (scenario==null || (scenarioClass != null && !scenarioClass.equals(scenario.getClass()))){
-            GameManager.getInstance().changeScenario(scenarioClass);
+        if (scenario==null || (scenarioClass != null)){
+            this.scenario = GameManager.getInstance().changeScenario(scenarioClass);
         }
         this.state = state;
     }
@@ -101,11 +107,42 @@ public class Game extends GameElement{
         this.enemyGameElementFactory = enemyGameElementFactory;
     }
 
+    public Role getEnemy() {
+        return enemy;
+    }
+
+    public void setEnemy(Role enemy) {
+        this.enemy = enemy;
+    }
+
     public State getInitState() {
         return initState;
     }
 
     public void setInitState(State initState) {
         this.initState = initState;
+    }
+
+
+    public void visitSmithy(){
+        state.visitSmithy();
+    }
+
+    public void randomEnemy(){
+        state.randomEnemy();
+    }
+
+    public void visitForest(){
+        state.visitForest();
+    }
+
+    public void attack(Skill skill){
+        state.action(skill);
+    }
+
+    public void useItem(Item item){state.useItem(item);}
+
+    public void refresh() {
+        GameManager.getInstance().changeScenario(this.scenario.getClass(),true);
     }
 }

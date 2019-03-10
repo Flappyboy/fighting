@@ -5,7 +5,7 @@ import cn.edu.nju.software.game.fighting.model.item.intensify.IntensifyMaterial;
 
 public interface IIntensifyStrategy {
 
-    void intensify(Equipment target, IntensifyMaterial ...materials);
+    void intensify(Equipment target, IntensifyMaterial material);
 
     boolean canIntensify(Equipment target, IntensifyMaterial material);
 }

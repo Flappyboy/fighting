@@ -14,6 +14,7 @@ public class NewGameCommand extends GameCommand {
 
     @Override
     public void Execute(Map<Object, Object> objects) {
+        GameManager.getInstance().getGameLogPanel().clear();
         GameManager.getInstance().changeScenario(BuildGameScenario.class);
     }
 }

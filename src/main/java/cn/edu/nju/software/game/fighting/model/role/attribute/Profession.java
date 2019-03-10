@@ -2,7 +2,7 @@ package cn.edu.nju.software.game.fighting.model.role.attribute;
 
 public enum Profession {
 
-    WARRIOR("战士"), MAGE("法师"), SWORDMAN("剑士");
+    WARRIOR("战士"), MAGE("法师"), SWORDMAN("剑士"), NONE("无");
 
     private String name;
 

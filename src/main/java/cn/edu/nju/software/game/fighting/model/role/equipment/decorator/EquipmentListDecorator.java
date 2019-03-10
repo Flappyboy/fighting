@@ -1,5 +1,6 @@
 package cn.edu.nju.software.game.fighting.model.role.equipment.decorator;
 
+import cn.edu.nju.software.game.fighting.model.ability.AttackAbility;
 import cn.edu.nju.software.game.fighting.model.item.equipment.Equipment;
 import cn.edu.nju.software.game.fighting.model.item.equipment.EquipmentType;
 import cn.edu.nju.software.game.fighting.model.role.Role;
@@ -40,12 +41,12 @@ public abstract class EquipmentListDecorator implements EquipmentList, Serializa
     }
 
     @Override
-    public Equipment remove(Integer equipmentTypeIndex) {
+    public Equipment remove(int equipmentTypeIndex) {
         Equipment tmp;
-        if(equipmentTypeIndex == equipmentList.getEquipmentTypeList().size()){
+        if(equipmentTypeIndex == equipmentList.getEquipmentTypeList(true).size()){
             tmp = this.equipment;
             this.equipment = null;
-        }else if(equipmentTypeIndex < equipmentList.getEquipmentTypeList().size()){
+        }else if(equipmentTypeIndex < equipmentList.getEquipmentTypeList(true).size()){
             tmp = this.equipmentList.remove(equipmentTypeIndex);
         }else{
             throw new RuntimeException("WRONG: equipmentTypeIndex: "+equipmentTypeIndex);
@@ -54,8 +55,37 @@ public abstract class EquipmentListDecorator implements EquipmentList, Serializa
     }
 
     @Override
-    public List<EquipmentType> getEquipmentTypeList() {
-        List<EquipmentType> equipmentTypeList = this.equipmentList.getEquipmentTypeList();
+    public void remove(Equipment equipment) {
+        if(this.equipment == equipment){
+            this.equipment = null;
+        }else{
+            this.equipmentList.remove(equipment);
+        }
+    }
+
+    @Override
+    public Equipment getEquipment(int equipmentTypeIndex) {
+        Equipment tmp = null;
+        if(equipmentTypeIndex == equipmentList.getEquipmentTypeList(true).size()){
+            tmp = this.equipment;
+        }else if(equipmentTypeIndex < equipmentList.getEquipmentTypeList(true).size()){
+            tmp = this.equipmentList.getEquipment(equipmentTypeIndex);
+        }else{
+            throw new RuntimeException("WRONG: equipmentTypeIndex: "+equipmentTypeIndex);
+        }
+        return tmp;
+    }
+
+    @Override
+    public List<EquipmentType> getEquipmentTypeList(boolean all) {
+        List<EquipmentType> equipmentTypeList = this.equipmentList.getEquipmentTypeList(all);
+        if(!all) {
+            for (EquipmentType equipmentType : equipmentTypeList) {
+                if (equipmentType.equals(this.equipmentType)) {
+                    return equipmentTypeList;
+                }
+            }
+        }
         equipmentTypeList.add(this.equipmentType);
         return equipmentTypeList;
     }
@@ -63,10 +93,16 @@ public abstract class EquipmentListDecorator implements EquipmentList, Serializa
     @Override
     public List<Equipment> getEquipment(EquipmentType equipmentType) {
         List<Equipment> equipmentList = this.equipmentList.getEquipment(equipmentType);
-        if(this.equipmentType.equals(equipmentType)){
+        if(this.equipmentType.equals(equipmentType) && this.equipment != null){
             equipmentList.add(this.equipment);
         }
         return equipmentList;
     }
 
+    @Override
+    public AttackAbility calculateAttackAbility() {
+        AttackAbility attackAbility = this.equipmentList.calculateAttackAbility();
+        attackAbility.attachAbility(this.equipment.getAttackAbility());
+        return attackAbility;
+    }
 }

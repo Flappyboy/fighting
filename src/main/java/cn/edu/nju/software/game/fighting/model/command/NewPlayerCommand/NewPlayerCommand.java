@@ -7,6 +7,7 @@ import cn.edu.nju.software.game.fighting.model.role.attribute.Gender;
 import cn.edu.nju.software.game.fighting.model.role.attribute.Profession;
 import cn.edu.nju.software.game.fighting.ui.base.RadioBtnPanel;
 import cn.edu.nju.software.game.fighting.ui.base.TextPanel;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -18,7 +19,7 @@ public class NewPlayerCommand extends GameCommand {
         super("创建角色");
         this.gameBuilder = gameBuilder;
 
-        put(String.class, new TextPanel("姓名："));
+        put(String.class, new TextPanel("姓名：", "勇士"));
 
         Map<String, Gender> genderMap = new LinkedHashMap<>();
         genderMap.put(Gender.MALE.getName(), Gender.MALE);
@@ -34,7 +35,18 @@ public class NewPlayerCommand extends GameCommand {
 
     @Override
     public void Execute(Map<Object, Object> objects) {
-        gameBuilder.buildPlayer((String)objects.get(String.class), (Gender) objects.get(Gender.class), (Profession)objects.get(Profession.class));
+        String name = (String)objects.get(String.class);
+        if(StringUtils.isBlank(name)){
+            say("姓名非法");
+            return;
+        }
+        if(objects.get(Gender.class)==null){
+            say("请选择性别");
+        }
+        if(objects.get(Profession.class)==null){
+            say("请选择职业");
+        }
+        gameBuilder.buildPlayer(name, (Gender) objects.get(Gender.class), (Profession)objects.get(Profession.class));
         gameBuilder.buildInitItem();
         gameBuilder.buildInitSkill();
         GameManager.getInstance().startNewGame();

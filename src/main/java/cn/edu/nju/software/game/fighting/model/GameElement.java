@@ -19,15 +19,30 @@ public abstract class GameElement implements Serializable, Cloneable {
         this.name = name;
     }
 
-    public abstract String getDesc();
+    public String getDesc(){
+        return name;
+    }
 
     public GameElement(String name) {
         this.name = name;
         game = GameManager.getInstance().getGameInstance();
+        if(game == null){
+            if(GameManager.getInstance().getGameBuilder()!=null){
+                game = GameManager.getInstance().getGameBuilder().result();
+            }
+        }
+    }
+
+    public void say(String log){
+        GameManager.getInstance().showLog(log);
     }
 
     public Game getGame() {
         return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     @Override
@@ -48,4 +63,6 @@ public abstract class GameElement implements Serializable, Cloneable {
                 .append(name)
                 .toHashCode();
     }
+
+
 }

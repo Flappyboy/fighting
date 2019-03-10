@@ -7,6 +7,7 @@ import cn.edu.nju.software.game.fighting.model.role.Role;
 import cn.edu.nju.software.game.fighting.model.role.attribute.Profession;
 import cn.edu.nju.software.game.fighting.model.skill.Skill;
 import cn.edu.nju.software.game.fighting.utils.CloneUtils;
+import org.apache.commons.lang3.RandomUtils;
 
 public class AttackSkill extends Skill {
 
@@ -31,9 +32,17 @@ public class AttackSkill extends Skill {
         return CloneUtils.clone( this);
     }
 
+
+
     @Override
     public void performs(Game game, Role initiator, Role receiver) {
+        say(initiator.getName()+" 发动了技能："+this.getName());
+        receiver.receiveAttack(attackStrategy.caculateAttack(initiator, this));
+    }
 
+    @Override
+    public void intensify(int point) {
+        getAttackAbility().addPhysical(point*2+ RandomUtils.nextInt(0,5));
     }
 
     public AttackAbility getAttackAbility() {
@@ -62,6 +71,6 @@ public class AttackSkill extends Skill {
 
     @Override
     public String getDesc() {
-        return "攻击技能： "+name;
+        return "攻击技能： "+name+"  等级："+getLevel()+"  经验值："+getExp()+"  攻击力："+attackAbility.getPhysical();
     }
 }

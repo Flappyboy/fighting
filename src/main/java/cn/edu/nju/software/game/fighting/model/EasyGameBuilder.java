@@ -10,21 +10,11 @@ import cn.edu.nju.software.game.fighting.model.role.attribute.Profession;
 public class EasyGameBuilder extends BaseGameBuilder {
     @Override
     public void buildPlayerGameElementFactory() {
-        game.setPlayerGameElementFactory(new HighQualityFactory());
+        game.setPlayerGameElementFactory(new HighQualityFactory(game));
     }
 
     @Override
     public void buildEnemyGameElementFactory() {
-        game.setEnemyGameElementFactory(new LowQualityFactory());
-    }
-
-    @Override
-    public void buildInitItem() {
-
-    }
-
-    @Override
-    public void buildInitSkill() {
-
+        game.setEnemyGameElementFactory(new LowQualityFactory(game));
     }
 }

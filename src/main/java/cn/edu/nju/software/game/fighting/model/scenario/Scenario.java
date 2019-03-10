@@ -2,6 +2,7 @@ package cn.edu.nju.software.game.fighting.model.scenario;
 
 import cn.edu.nju.software.game.fighting.model.GameElement;
 import cn.edu.nju.software.game.fighting.model.command.CommandSet;
+import cn.edu.nju.software.game.fighting.ui.scenario.operate.BaseScenarioOperatePanel;
 import cn.edu.nju.software.game.fighting.ui.scenario.operate.OperatePanel;
 
 import java.util.ArrayList;
@@ -13,23 +14,34 @@ public abstract class Scenario extends GameElement{
 
     protected OperatePanel operatePanel;
 
+    boolean refresh = false;
+
     public Scenario(String name) {
         super(name);
     }
 
+    public void setRefresh(boolean refresh) {
+        this.refresh = refresh;
+    }
+
     public OperatePanel getOperatePanel() {
-        if(operatePanel==null){
-            operatePanel = createOperatePanel();
+        if(operatePanel != null && refresh){
+            operatePanel = createOperatePanel(operatePanel.getTab());
+        }else{
+            operatePanel = createOperatePanel(0);
         }
         return operatePanel;
     }
 
-    protected abstract OperatePanel createOperatePanel();
+    protected OperatePanel createOperatePanel(int tab) {
+        return new BaseScenarioOperatePanel(this, tab);
+    }
 
     public List<CommandSet> getCommandSetList() {
-        if(commandSetList.size()==0){
+//        if(commandSetList.size()==0){
+        commandSetList.clear();
             createCommandSets();
-        }
+//        }
         return commandSetList;
     }
 

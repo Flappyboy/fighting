@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 //特殊效果 概率
-public class SpecificAbility {
+public class SpecificAbility  extends Ability{
     private Map<State, Float> stateMap = new HashMap<>();
 
     public SpecificAbility(){

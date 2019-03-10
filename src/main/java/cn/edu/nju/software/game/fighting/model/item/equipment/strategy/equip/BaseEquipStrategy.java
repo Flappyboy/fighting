@@ -1,6 +1,7 @@
 package cn.edu.nju.software.game.fighting.model.item.equipment.strategy.equip;
 
 import cn.edu.nju.software.game.fighting.model.item.equipment.Equipment;
+import cn.edu.nju.software.game.fighting.model.item.equipment.exection.CannotEquipmentException;
 import cn.edu.nju.software.game.fighting.model.role.Role;
 import cn.edu.nju.software.game.fighting.model.role.equipment.exception.FullEquipmentTypeException;
 import cn.edu.nju.software.game.fighting.model.role.equipment.exception.NoEquipmentTypeException;
@@ -15,12 +16,12 @@ public class BaseEquipStrategy implements IEquipStrategy, Serializable {
         return true;
     }
     @Override
-    public void equip(Role role, Equipment equipment) throws NoEquipmentTypeException, FullEquipmentTypeException {
+    public void equip(Role role, Equipment equipment) throws NoEquipmentTypeException, FullEquipmentTypeException, CannotEquipmentException {
         if (canEquip(role, equipment)) {
             role.getEquipmentList().add(equipment);
-            role.getGame().say(role.getName() + " 成功装备 " + equipment.getName());
+            role.say(role.getName() + " 成功装备 " + equipment.getName());
         } else {
-            role.getGame().say(role.getName() + " 无法装备 " + equipment.getName());
+            throw new CannotEquipmentException();
         }
     }
 }

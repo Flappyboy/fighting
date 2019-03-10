@@ -8,5 +8,8 @@ public class SmithyState extends StateAdapter {
         super(game);
     }
 
-
+    @Override
+    public void visitForest() {
+        game.setState(new ForestState(game));
+    }
 }

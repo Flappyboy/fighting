@@ -14,4 +14,6 @@ public abstract class OperatePanel extends JPanel {
     public Scenario getScenario() {
         return scenario;
     }
+
+    abstract public int getTab();
 }

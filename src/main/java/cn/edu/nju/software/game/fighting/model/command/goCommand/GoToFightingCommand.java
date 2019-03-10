@@ -13,6 +13,6 @@ public class GoToFightingCommand extends GameCommand {
 
     @Override
     public void Execute(Map<Object, Object> objects) {
-        GameManager.getInstance().changeScenario(FightScenario.class);
+        getGame().randomEnemy();
     }
 }

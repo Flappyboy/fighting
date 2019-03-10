@@ -13,10 +13,6 @@ public class ForestScenario extends SharedScenario {
         super("野外");
     }
 
-    @Override
-    protected OperatePanel createOperatePanel() {
-        return new BaseScenarioOperatePanel(this);
-    }
 
     @Override
     protected void createCommandSets() {

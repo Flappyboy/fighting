@@ -1,6 +1,7 @@
 package cn.edu.nju.software.game.fighting.model.role.bag;
 
 import cn.edu.nju.software.game.fighting.model.item.Item;
+import cn.edu.nju.software.game.fighting.model.item.intensify.IntensifyMaterial;
 import cn.edu.nju.software.game.fighting.model.role.equipment.DefaultEquipmentList;
 import cn.edu.nju.software.game.fighting.utils.CloneUtils;
 
@@ -18,7 +19,11 @@ public class DefaultBag implements Bag, Cloneable, Serializable {
 
     @Override
     public void remove(Item item) {
-        itemList.remove(item);
+        for(int i=0; i<itemList.size(); i++){
+            if(item == itemList.get(i)){
+                itemList.remove(item);
+            }
+        }
     }
 
     public void remove(String itemName) {
@@ -44,5 +49,16 @@ public class DefaultBag implements Bag, Cloneable, Serializable {
     @Override
     public void sort() {
 
+    }
+
+    @Override
+    public List<IntensifyMaterial> getIntensifyItem() {
+        List<IntensifyMaterial> intensifyMaterialList = new ArrayList<>();
+        for(Item item: itemList){
+            if(item instanceof  IntensifyMaterial){
+                intensifyMaterialList.add((IntensifyMaterial) item);
+            }
+        }
+        return intensifyMaterialList;
     }
 }

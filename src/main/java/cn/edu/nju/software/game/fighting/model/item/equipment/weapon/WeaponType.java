@@ -6,7 +6,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public enum WeaponType {
-    AXE("斧子", null),
+    AXE("斧子", new HashSet<Profession>(){{
+        add(Profession.WARRIOR);
+    }}),
     SWORD("剑", new HashSet<Profession>(){{
         add(Profession.WARRIOR);
         add(Profession.SWORDMAN);

@@ -2,21 +2,28 @@ package cn.edu.nju.software.game.fighting.model.skill.strategy.upgrate;
 
 
 import cn.edu.nju.software.game.fighting.model.skill.Skill;
+import cn.edu.nju.software.game.fighting.model.skill.attack.AttackSkill;
 
-public class DefaultUpgrateStrategy implements UpgrateStrategy {
+import java.io.Serializable;
+
+public class DefaultUpgrateStrategy implements UpgrateStrategy, Serializable {
     int baseExp = 10;
 
     @Override
     public void upgrate(Skill skill, int incrementExp) {
-        int currentExp = skill.getExp();
-        int currentLevel =  skill.getLevel();
+        if(incrementExp<0){
+            return;
+        }
+        int fullExp = skill.getLevel() * baseExp;
+        skill.setExp(skill.getExp()+incrementExp);
+        while(skill.getExp() >= fullExp){
+            skill.setLevel(skill.getLevel()+1);
 
-        int fullExp = currentLevel * baseExp;
+            skill.setExp(skill.getExp() - fullExp);
 
-        currentExp+=incrementExp;
-        if(currentExp >= fullExp){
-            skill.setLevel(currentLevel+1);
-            skill.setExp(currentExp - fullExp);
+            fullExp = skill.getLevel() * baseExp;
+            skill.intensify(skill.getLevel());
+            skill.say("技能 "+skill.getName()+" 升级了！" + skill.getDesc());
         }
     }
 }

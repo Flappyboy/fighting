@@ -11,10 +11,6 @@ public class NewPlayerScenario extends SharedScenario {
         super("新建角色");
     }
 
-    @Override
-    protected OperatePanel createOperatePanel() {
-        return new BaseScenarioOperatePanel(this);
-    }
 
     @Override
     protected void createCommandSets() {

@@ -12,13 +12,13 @@ public abstract class SkillFactory implements ISkillFactory {
 
     @Override
     public Skill randomSkill() {
-        return skillList.get(RandomUtils.nextInt(0,skillList.size()));
+        return skillList.get(RandomUtils.nextInt(0,skillList.size())).clone();
     }
 
     @Override
     public Skill randomSkill(Profession profession) {
         List<Skill> professionList = getSkillList(profession);
-        return professionList.get(RandomUtils.nextInt(0,professionList.size()));
+        return professionList.get(RandomUtils.nextInt(0,professionList.size())).clone();
     }
 
     @Override

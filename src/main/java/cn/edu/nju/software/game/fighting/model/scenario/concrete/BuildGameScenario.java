@@ -11,10 +11,6 @@ public class BuildGameScenario extends SharedScenario {
         super("选择游戏难度");
     }
 
-    @Override
-    protected OperatePanel createOperatePanel() {
-        return new BaseScenarioOperatePanel(this);
-    }
 
     @Override
     protected void createCommandSets() {

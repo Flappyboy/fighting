@@ -1,6 +1,6 @@
 package cn.edu.nju.software.game.fighting.model.ability;
 
-public class AttackAbility {
+public class AttackAbility extends Ability{
     private Integer physical = 0;
 
     public AttackAbility clone(){
@@ -15,6 +15,7 @@ public class AttackAbility {
 
     public AttackAbility addPhysical(Integer physical) {
         this.physical += physical;
+        this.physical = Math.max(0, this.physical);
         return this;
     }
 

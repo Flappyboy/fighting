@@ -13,7 +13,7 @@ public class AllSkillFactory extends SkillFactory {
         return instance;
     }
 
-    public AllSkillFactory() {
-        skillList.addAll(new AttackSkillFactory().getSkillList());
+    private AllSkillFactory() {
+        skillList.addAll(AttackSkillFactory.getInstance().getSkillList());
     }
 }

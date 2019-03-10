@@ -1,7 +1,8 @@
 package cn.edu.nju.software.game.fighting.model.state;
 
 import cn.edu.nju.software.game.fighting.model.Game;
-import cn.edu.nju.software.game.fighting.model.state.State;
+import cn.edu.nju.software.game.fighting.model.item.Item;
+import cn.edu.nju.software.game.fighting.model.skill.Skill;
 
 import java.io.Serializable;
 
@@ -23,7 +24,7 @@ public class StateAdapter implements State, Serializable {
     }
 
     @Override
-    public void exitSmithy() {
+    public void visitForest() {
         System.out.println("您当前状态无法执行该操作");
     }
 
@@ -32,21 +33,8 @@ public class StateAdapter implements State, Serializable {
         System.out.println("您当前状态无法执行该操作");
     }
 
-
     @Override
-    public void prepareBeforeMyTurn() {
-        System.out.println("您当前状态无法执行该操作");
-    }
-
-
-
-    @Override
-    public void prepareBeforeEnemyTurn() {
-        System.out.println("您当前状态无法执行该操作");
-    }
-
-    @Override
-    public void action() {
+    public void action(Skill skill) {
 
     }
 
@@ -64,5 +52,10 @@ public class StateAdapter implements State, Serializable {
     @Override
     public void reStart() {
         System.out.println("您当前状态无法执行该操作");
+    }
+
+    @Override
+    public void useItem(Item item) {
+
     }
 }

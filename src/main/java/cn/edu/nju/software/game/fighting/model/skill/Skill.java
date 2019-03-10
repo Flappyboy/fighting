@@ -24,6 +24,24 @@ public abstract class Skill extends GameElement{
         this.profession = profession;
     }
 
+    boolean player = true;
+
+    @Override
+    public String getDesc() {
+        return super.getDesc();
+    }
+
+    public void addExp(int exp, boolean player){
+        this.player = player;
+        upgrateStrategy.upgrate(this, exp);
+    }
+
+    @Override
+    public void say(String log) {
+        if(this.player)
+            super.say(log);
+    }
+
     public Skill clone(){
         return CloneUtils.clone( this);
     }
@@ -80,4 +98,6 @@ public abstract class Skill extends GameElement{
                 .append(profession)
                 .toHashCode();
     }
+
+    public abstract void intensify(int point);
 }

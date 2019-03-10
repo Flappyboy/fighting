@@ -1,5 +1,7 @@
 package cn.edu.nju.software.game.fighting.model.scenario;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,16 +9,16 @@ public class ScenarioFactory {
 
     private static final Map<Class<? extends SharedScenario>, SharedScenario> scenarioMap = new HashMap<>();
 
-    public static Scenario getScenario(Class<? extends Scenario> scenarioClass)
+    public static Scenario getScenario(Class<? extends Scenario> scenarioClass, boolean refresh)
     {
         if(SharedScenario.class.isAssignableFrom(scenarioClass)){
-            return getSharedScenario(scenarioClass);
+            return getSharedScenario(scenarioClass, refresh);
         }else{
-            return getUnsharedScenario(scenarioClass);
+            return getUnsharedScenario(scenarioClass, refresh);
         }
     }
 
-    public static SharedScenario getSharedScenario(Class scenarioClass) {
+    public static SharedScenario getSharedScenario(Class scenarioClass, boolean refresh) {
         SharedScenario scenario = scenarioMap.get(scenarioClass);
 
         if(scenario == null) {
@@ -29,10 +31,11 @@ public class ScenarioFactory {
             }
             scenarioMap.put(scenarioClass, scenario);
         }
+        scenario.setRefresh(refresh);
         return scenario;
     }
 
-    public static UnsharedScenario getUnsharedScenario(Class scenarioClass) {
+    public static UnsharedScenario getUnsharedScenario(Class scenarioClass, boolean refresh) {
         UnsharedScenario scenario = null;
             try {
                 scenario = (UnsharedScenario) scenarioClass.newInstance();
