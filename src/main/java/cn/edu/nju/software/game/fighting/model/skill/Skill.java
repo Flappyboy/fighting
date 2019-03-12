@@ -85,10 +85,9 @@ public abstract class Skill extends GameElement{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Skill skill = (Skill) o;
-        return new EqualsBuilder()
-                .appendSuper(super.equals(o))
-                .append(profession, skill.profession)
-                .isEquals();
+        if(this.getProfession().equals(skill.getProfession()) && this.name.equals(skill.name)) return true;
+
+        return false;
     }
 
     @Override

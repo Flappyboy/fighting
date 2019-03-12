@@ -38,7 +38,7 @@ public class Role extends GameElement {
     private static final long serialVersionUID = -3512398073645067593L;
     // 桥接模式
     String id;
-    Integer level = 0;
+    Integer level = 1;
     Integer exp = 0;
 
     Gender gender = Gender.MALE;
@@ -93,7 +93,8 @@ public class Role extends GameElement {
 
     @Override
     public String getDesc() {
-        String desc = "角色："+name+ "  等级："+getLevel()+"  攻："+attackAbility.getPhysical()+"  防: "+defenseAbility.getPhysical();
+        getGame().sayLine();
+        String desc = "角色："+name+ "  等级："+getLevel()+ "  经验值："+getExp()+"  攻："+attackAbility.getPhysical()+"  防: "+defenseAbility.getPhysical();
         desc += "性别："+getGender().getName()+"  职业: "+getProfession()+"  种族: "+getRace()+"\n";
         desc += "血量："+blood+"("+bloodMax+")"+"\n";
         desc += "装备："+"\n";
@@ -116,6 +117,7 @@ public class Role extends GameElement {
         if(itemIterator.hasNext()){
             desc += "      .........";
         }
+        getGame().sayLine();
         return desc;
     }
 
@@ -144,7 +146,7 @@ public class Role extends GameElement {
     }
 
     public void learnSkill(Skill skill) throws CannotLearnException {
-        if(skill.getProfession().equals(this.profession) ){
+        if(skill.getProfession().equals(this.profession) || skill.getProfession().equals(Profession.NONE) ){
             for(Skill oldskill: skillList.getSkillList()){
                 if(oldskill.equals(skill)){
                     throw new CannotLearnException();
@@ -165,8 +167,8 @@ public class Role extends GameElement {
         try {
             equipment.mount(this);
             getBag().remove(equipment);
-            game.refresh();
-            game.useItem(equipment);
+            getGame().refresh();
+            getGame().useItem(equipment);
         } catch (FullEquipmentTypeException e) {
             say(e.getMessage());
         } catch (NoEquipmentTypeException e) {
@@ -179,7 +181,7 @@ public class Role extends GameElement {
     public void demountEquipment(Equipment equipment){
         equipmentList.remove(equipment);
         getBag().add(equipment);
-        game.refresh();
+        getGame().refresh();
     }
 
     public List<Item> itemDrop(){

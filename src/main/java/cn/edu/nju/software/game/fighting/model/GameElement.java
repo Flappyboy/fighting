@@ -38,7 +38,11 @@ public abstract class GameElement implements Serializable, Cloneable {
     }
 
     public Game getGame() {
-        return game;
+        if(game == null) {
+            return GameManager.getInstance().getGameInstance();
+        }else{
+            return game;
+        }
     }
 
     public void setGame(Game game) {

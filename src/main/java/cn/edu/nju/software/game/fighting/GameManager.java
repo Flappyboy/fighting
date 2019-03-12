@@ -9,9 +9,11 @@ import cn.edu.nju.software.game.fighting.model.skill.SkillFactory;
 import cn.edu.nju.software.game.fighting.model.skill.attack.AttackSkillFactory;
 import cn.edu.nju.software.game.fighting.ui.GameLogPanel;
 import cn.edu.nju.software.game.fighting.ui.GameOperatePanel;
+import org.apache.commons.lang3.SerializationUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 
 public class GameManager {
     private static GameManager instance;
@@ -152,4 +154,38 @@ public class GameManager {
         gameManager.start();
     }
 
+    public void continueGame() {
+        if(gameInstance != null){
+            gameInstance.start();
+        }else{
+            load();
+        }
+    }
+
+    private void load(){
+        File file = new File("./game");
+        try {
+            gameInstance = SerializationUtils.deserialize(new FileInputStream(file));
+            getGameLogPanel().clear();
+            gameInstance.start();
+        } catch (FileNotFoundException e) {
+            showLog("----------存档不存在，无法读取！-------");
+        }
+    }
+
+    public void save(){
+        File file = new File("./game");
+        if(file.exists()){
+            file.delete();
+        }
+        try {
+            file.createNewFile();
+            SerializationUtils.serialize(gameInstance, new FileOutputStream(file));
+            showLog("------------保存成功------------");
+        } catch (FileNotFoundException e) {
+            showLog("------------保存失败------------");
+        } catch (IOException e) {
+            showLog("------------保存失败------------");
+        }
+    }
 }

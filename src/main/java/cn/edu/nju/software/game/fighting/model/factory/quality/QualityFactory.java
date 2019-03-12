@@ -7,7 +7,9 @@ import cn.edu.nju.software.game.fighting.model.role.Player;
 import cn.edu.nju.software.game.fighting.model.role.Role;
 import cn.edu.nju.software.game.fighting.model.skill.Skill;
 
-public interface QualityFactory {
+import java.io.Serializable;
+
+public interface QualityFactory extends Serializable {
 
     Player createPlayer(Player player);
 

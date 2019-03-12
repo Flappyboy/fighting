@@ -7,7 +7,7 @@ import cn.edu.nju.software.game.fighting.model.skill.attack.AttackSkill;
 import java.io.Serializable;
 
 public class DefaultUpgrateStrategy implements UpgrateStrategy, Serializable {
-    int baseExp = 10;
+    int baseExp = 20;
 
     @Override
     public void upgrate(Skill skill, int incrementExp) {

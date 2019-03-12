@@ -28,14 +28,22 @@ public class AllItemFactory implements IItemFactory {
         Drug drug;
 
         drug = new Drug("初级回复药");
+        drug.getRecoveryAbility().addBlood(10);
         add(drug);
         drug.setRecoveryAbility(baseRecoveryAbility.clone());
 
         drug = new Drug("中级回复药");
+        drug.getRecoveryAbility().addBlood(30);
         add(drug);
         drug.setRecoveryAbility(baseRecoveryAbility.clone());
 
         drug = new Drug("高级回复药");
+        drug.getRecoveryAbility().addBlood(50);
+        add(drug);
+        drug.setRecoveryAbility(baseRecoveryAbility.clone());
+
+        drug = new Drug("特级回复药");
+        drug.getRecoveryAbility().addBlood(100);
         add(drug);
         drug.setRecoveryAbility(baseRecoveryAbility.clone());
 

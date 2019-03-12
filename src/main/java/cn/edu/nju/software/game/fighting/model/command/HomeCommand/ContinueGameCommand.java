@@ -14,7 +14,7 @@ public class ContinueGameCommand extends GameCommand {
 
     @Override
     public void Execute(Map<Object, Object> objects) {
-
+        GameManager.getInstance().continueGame();
     }
 
 

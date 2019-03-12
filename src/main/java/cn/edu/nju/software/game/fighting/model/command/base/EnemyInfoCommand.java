@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class EnemyInfoCommand extends GameCommand {
     public EnemyInfoCommand() {
-        super("角色信息");
+        super("敌方信息");
     }
 
     @Override

@@ -38,79 +38,43 @@ public class RoleFactory implements IRoleFactory{
 
         role = new Role("幼年哥布林");
         add(role);
-        role.setLevel(0);
+        role.setLevel(1);
         role.setBodyType(BodyType.SAMLL);
         role.setRace(Race.MONSTER);
         role.setAttackAbility(baseAttackAbility.clone());
         role.setDefenseAbility(baseDefenseAbility.clone());
         role.setBlood(10);
         role.setBloodMax(10);
-        for(int i=0; i<4; i++){
-            Skill s = AttackSkillFactory.getInstance().randomSkill(Profession.NONE);
-            s.addExp(0, false);
-            try {
-                role.learnSkill(s);
-            } catch (CannotLearnException e) {
-
-            }
-        }
 
         role = new Role("成年哥布林");
         add(role);
-        role.setLevel(3);
+        role.setLevel(1);
         role.setBodyType(BodyType.MEDIUM);
         role.setRace(Race.MONSTER);
-        role.setAttackAbility(baseAttackAbility.clone().addPhysical(5));
-        role.setDefenseAbility(baseDefenseAbility.clone().addPhysical(5));
+        role.setAttackAbility(baseAttackAbility.clone().addPhysical(3));
+        role.setDefenseAbility(baseDefenseAbility.clone().addPhysical(3));
         role.setBlood(20);
         role.setBloodMax(20);
-        for(int i=0; i<4; i++){
-            Skill s = AttackSkillFactory.getInstance().randomSkill(Profession.NONE);
-            s.addExp(5, false);
-            try {
-                role.learnSkill(s);
-            } catch (CannotLearnException e) {
-
-            }
-        }
 
         role = new Role("大型哥布林");
         add(role);
-        role.setLevel(5);
+        role.setLevel(1);
         role.setBodyType(BodyType.BIG);
         role.setRace(Race.MONSTER);
-        role.setAttackAbility(baseAttackAbility.clone().addPhysical(10));
-        role.setDefenseAbility(baseDefenseAbility.clone().addPhysical(15));
+        role.setAttackAbility(baseAttackAbility.clone().addPhysical(4));
+        role.setDefenseAbility(baseDefenseAbility.clone().addPhysical(4));
         role.setBlood(50);
         role.setBloodMax(50);
-        for(int i=0; i<4; i++){
-            Skill s = AttackSkillFactory.getInstance().randomSkill(Profession.NONE);
-            s.addExp(20, false);
-            try {
-                role.learnSkill(s);
-            } catch (CannotLearnException e) {
-
-            }
-        }
 
         role = new Role("哥布林之王");
         add(role);
-        role.setLevel(10);
+        role.setLevel(1);
         role.setBodyType(BodyType.BIG);
         role.setRace(Race.MONSTER);
-        role.setAttackAbility(baseAttackAbility.clone().addPhysical(10));
-        role.setDefenseAbility(baseDefenseAbility.clone().addPhysical(15));
+        role.setAttackAbility(baseAttackAbility.clone().addPhysical(7));
+        role.setDefenseAbility(baseDefenseAbility.clone().addPhysical(7));
         role.setBlood(100);
         role.setBloodMax(100);
-        for(int i=0; i<4; i++){
-            Skill s = AttackSkillFactory.getInstance().randomSkill(Profession.NONE);
-            s.addExp(40, false);
-            try {
-                role.learnSkill(s);
-            } catch (CannotLearnException e) {
-
-            }
-        }
 
     }
 
@@ -124,18 +88,29 @@ public class RoleFactory implements IRoleFactory{
         return roleList.get(i).clone();
     }
     public static int i = 2;
-    public Role getRandomRole(int atk) {
+    public Role getRandomRole(Role player) {
         i--;
         Role role = null;
-        if(i>0){
-            atk = Math.max(atk, 1);
 
-            while(role==null || role.getAttackAbility().getPhysical()>atk){
-                role = roleList.get(RandomUtils.nextInt(0, roleList.size()));
-            }
-        }else{
+        while(role==null || role.getLevel() > player.getLevel()){
             role = roleList.get(RandomUtils.nextInt(0, roleList.size()));
+            break;
         }
+
+        for(int i=0; i<4; i++){
+            Skill s = AttackSkillFactory.getInstance().randomSkill(Profession.NONE);
+            s.addExp(Math.max((player.getLevel()-role.getLevel()), 0)*20 + RandomUtils.nextInt(1,3)*role.getAttackAbility().getPhysical(), false);
+            try {
+                role.learnSkill(s);
+            } catch (CannotLearnException e) {
+
+            }
+        }
+
+        if(role.getLevel() < player.getLevel()){
+            role.addExp((player.getLevel()-role.getLevel()+1)*RandomUtils.nextInt(7,12)*6);
+        }
+
 
         return role.clone();
     }

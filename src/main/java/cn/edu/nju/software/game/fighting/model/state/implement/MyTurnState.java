@@ -3,6 +3,8 @@ package cn.edu.nju.software.game.fighting.model.state.implement;
 import cn.edu.nju.software.game.fighting.model.Game;
 import cn.edu.nju.software.game.fighting.model.item.AllItemFactory;
 import cn.edu.nju.software.game.fighting.model.item.Item;
+import cn.edu.nju.software.game.fighting.model.role.Player;
+import cn.edu.nju.software.game.fighting.model.role.Role;
 import cn.edu.nju.software.game.fighting.model.role.attribute.State;
 import cn.edu.nju.software.game.fighting.model.skill.Skill;
 import cn.edu.nju.software.game.fighting.model.state.StateAdapter;
@@ -21,7 +23,8 @@ public class MyTurnState extends StateAdapter {
 
         if(game.getEnemy().getState().equals(State.DEAD)){
             int r = RandomUtils.nextInt(0,6);
-            game.getPlayer();
+            Role player = game.getPlayer();
+            player.addExp(player.getLevel() * RandomUtils.nextInt(10,100));
             if(r == 0){
                 game.say("你击杀了 "+game.getEnemy().getName()+"，但什么也没掉落");
             }else {
@@ -34,8 +37,10 @@ public class MyTurnState extends StateAdapter {
             }
 
             game.setState(new ForestState(game));
+            game.sayLine();
             return;
         }
+        game.sayLine();
         game.say("进入敌方回合！");
         game.setState(new EnemyTurnState(game));
         game.getEnemy().enemyAutoAction();

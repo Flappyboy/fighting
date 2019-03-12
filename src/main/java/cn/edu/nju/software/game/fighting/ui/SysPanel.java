@@ -15,6 +15,11 @@ public class SysPanel extends JPanel {
 
         box.add(Box.createVerticalStrut(20));
         BaseBtn saveBtn = new BaseBtn("  保存游戏  ");
+        saveBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                GameManager.getInstance().save();
+            }
+        });
         box.add(saveBtn);
 
         box.add(Box.createVerticalStrut(20));

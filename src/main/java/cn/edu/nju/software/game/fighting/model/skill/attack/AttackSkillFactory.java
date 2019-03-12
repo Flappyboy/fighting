@@ -18,19 +18,22 @@ public class AttackSkillFactory extends SkillFactory {
     private AttackSkillFactory() {
         AttackAbility baseAttackAbility = new AttackAbility().addPhysical(1);
 
-        add(AttackSkill.instanceWithAtk("普通攻击", Profession.WARRIOR, baseAttackAbility.clone()));
-        add(AttackSkill.instanceWithAtk("冲撞", Profession.WARRIOR, baseAttackAbility.clone().addPhysical(3)));
+        add(AttackSkill.instanceWithAtk("暴怒拳", Profession.WARRIOR, baseAttackAbility.clone()));
+        add(AttackSkill.instanceWithAtk("强力冲撞", Profession.WARRIOR, baseAttackAbility.clone().addPhysical(3)));
         add(AttackSkill.instanceWithAtk("砍", Profession.WARRIOR, baseAttackAbility.clone().addPhysical(5)));
+        add(AttackSkill.instanceWithAtk("one punch", Profession.WARRIOR, baseAttackAbility.clone().addPhysical(5)));
 
-        add(AttackSkill.instanceWithAtk("普通攻击", Profession.SWORDMAN, baseAttackAbility.clone().addPhysical(1)));
+        add(AttackSkill.instanceWithAtk("剑技", Profession.SWORDMAN, baseAttackAbility.clone().addPhysical(1)));
         add(AttackSkill.instanceWithAtk("劈", Profession.SWORDMAN, baseAttackAbility.clone().addPhysical(2)));
         add(AttackSkill.instanceWithAtk("刺", Profession.SWORDMAN, baseAttackAbility.clone().addPhysical(6)));
+        add(AttackSkill.instanceWithAtk("武剑一击", Profession.SWORDMAN, baseAttackAbility.clone().addPhysical(6)));
+        add(AttackSkill.instanceWithAtk("一闪", Profession.SWORDMAN, baseAttackAbility.clone().addPhysical(6)));
 
         add(AttackSkill.instanceWithAtk("普通攻击", Profession.MAGE, baseAttackAbility.clone().addPhysical(1)));
         add(AttackSkill.instanceWithAtk("小火球", Profession.MAGE, baseAttackAbility.clone().addPhysical(5)));
         add(AttackSkill.instanceWithAtk("雷击", Profession.MAGE, baseAttackAbility.clone().addPhysical(10)));
 
-        add(AttackSkill.instanceWithAtk("普通攻击", Profession.NONE, baseAttackAbility.clone().addPhysical(1)));
+        add(AttackSkill.instanceWithAtk("小拳拳", Profession.NONE, baseAttackAbility.clone().addPhysical(1)));
         add(AttackSkill.instanceWithAtk("冲撞", Profession.NONE, baseAttackAbility.clone().addPhysical(3)));
         add(AttackSkill.instanceWithAtk("拍脸", Profession.NONE, baseAttackAbility.clone().addPhysical(5)));
         add(AttackSkill.instanceWithAtk("怒吼", Profession.NONE, baseAttackAbility.clone().addPhysical(7)));

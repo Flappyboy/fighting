@@ -37,7 +37,7 @@ public class ForestState extends StateAdapter {
 //            }
 //            game.say("------未遇到怪物------");
 //        }
-        game.setEnemy(game.getEnemyGameElementFactory().createRole(RoleFactory.getInstance().getRandomRole(game.getPlayer().getAttackAbility().getPhysical())));
+        game.setEnemy(game.getEnemyGameElementFactory().createRole(RoleFactory.getInstance().getRandomRole(game.getPlayer())));
         game.say("出现怪物： " + game.getEnemy().getDesc());
         game.setState(new MyTurnState(game));
     }

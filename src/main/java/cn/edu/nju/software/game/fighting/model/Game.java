@@ -44,7 +44,12 @@ public class Game extends GameElement{
     }
 
     public void start(){
-        setState(initState);
+        say("-----------游戏开始----------");
+        if(state != null){
+            setState(state);
+        }else {
+            setState(initState);
+        }
     }
 
     @Override
@@ -61,6 +66,9 @@ public class Game extends GameElement{
 
     public void say(String words) {
         GameManager.getInstance().showLog(words);
+    }
+    public void sayLine() {
+        say("-------------------------------------");
     }
 
     public State getState() {
