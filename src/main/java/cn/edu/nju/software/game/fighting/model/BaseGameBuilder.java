@@ -44,6 +44,8 @@ public abstract class BaseGameBuilder implements IGameBuilder {
     @Override
     public void buildInitSkill() {
         try {
+            game.getPlayer().learnSkill(game.getPlayerGameElementFactory().createSkill(AttackSkillFactory.getInstance().getInitSkill().get(0)));
+            game.getPlayer().learnSkill(game.getPlayerGameElementFactory().createSkill(AttackSkillFactory.getInstance().getInitSkill().get(1)));
             game.getPlayer().learnSkill(game.getPlayerGameElementFactory().createSkill(AttackSkillFactory.getInstance().randomSkill(game.getPlayer().getProfession())));
         } catch (CannotLearnException e) {
             e.printStackTrace();

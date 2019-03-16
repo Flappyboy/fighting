@@ -1,25 +1,24 @@
 package cn.edu.nju.software.game.fighting.model.command.fight;
 
 import cn.edu.nju.software.game.fighting.model.command.GameCommand;
-import cn.edu.nju.software.game.fighting.model.item.equipment.Equipment;
+import cn.edu.nju.software.game.fighting.model.skill.ComboSkill;
 import cn.edu.nju.software.game.fighting.model.skill.Skill;
 import cn.edu.nju.software.game.fighting.ui.base.RadioColTablePanel;
-import cn.edu.nju.software.game.fighting.ui.base.TextPanel;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
-public class SkillCommand extends GameCommand {
-    public SkillCommand() {
+public class ComboSkillCommand extends GameCommand {
+    public ComboSkillCommand() {
         super("使用技能");
 
-        List<Skill> skillList = getGame().getPlayer().getSkillList().getSkillList();
+        List<ComboSkill> skillList = getGame().getPlayer().getAllComoboSkills();
 
         Vector<Vector> data = new Vector<>();
         Vector<String> columns = new Vector<>();
         Vector<Skill> returnObjs = new Vector<>();
-        columns.add("武器");
+        columns.add("技能");
         columns.add("描述");
 
         for(Skill skill: skillList){

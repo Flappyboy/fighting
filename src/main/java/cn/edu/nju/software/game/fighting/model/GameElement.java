@@ -55,7 +55,6 @@ public abstract class GameElement implements Serializable, Cloneable {
         if (o == null || getClass() != o.getClass()) return false;
         GameElement that = (GameElement) o;
         return new EqualsBuilder()
-                .append(game, that.game)
                 .append(name, that.name)
                 .isEquals();
     }
@@ -63,7 +62,6 @@ public abstract class GameElement implements Serializable, Cloneable {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(game)
                 .append(name)
                 .toHashCode();
     }

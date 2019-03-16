@@ -1,7 +1,5 @@
 package cn.edu.nju.software.game.fighting.model.role;
 
-import cn.edu.nju.software.game.fighting.GameManager;
-import cn.edu.nju.software.game.fighting.model.Game;
 import cn.edu.nju.software.game.fighting.model.GameElement;
 import cn.edu.nju.software.game.fighting.model.ability.AttackAbility;
 import cn.edu.nju.software.game.fighting.model.ability.DefenseAbility;
@@ -17,7 +15,6 @@ import cn.edu.nju.software.game.fighting.model.role.bag.Bag;
 import cn.edu.nju.software.game.fighting.model.role.bag.DefaultBag;
 import cn.edu.nju.software.game.fighting.model.role.equipment.DefaultEquipmentList;
 import cn.edu.nju.software.game.fighting.model.role.equipment.EquipmentList;
-import cn.edu.nju.software.game.fighting.model.role.equipment.decorator.EquipmentListDecorator;
 import cn.edu.nju.software.game.fighting.model.role.equipment.exception.FullEquipmentTypeException;
 import cn.edu.nju.software.game.fighting.model.role.equipment.exception.NoEquipmentTypeException;
 import cn.edu.nju.software.game.fighting.model.role.exceptions.CannotLearnException;
@@ -25,11 +22,14 @@ import cn.edu.nju.software.game.fighting.model.role.skill.DefaultSkillList;
 import cn.edu.nju.software.game.fighting.model.role.skill.SkillList;
 import cn.edu.nju.software.game.fighting.model.role.upgrate.DefaultUpgrateStrategy;
 import cn.edu.nju.software.game.fighting.model.role.upgrate.UpgrateStrategy;
+import cn.edu.nju.software.game.fighting.model.skill.ComboSkill;
 import cn.edu.nju.software.game.fighting.model.skill.Skill;
+import cn.edu.nju.software.game.fighting.model.skill.attack.AttackSkillFactory;
 import cn.edu.nju.software.game.fighting.utils.CloneUtils;
 import org.apache.commons.lang3.RandomUtils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -107,6 +107,10 @@ public class Role extends GameElement {
         for(Skill skill : skillList.getSkillList()){
             desc += "     "+skill.getDesc()+"\n";
         }
+        desc += "组合技："+"\n";
+        for(Skill skill : getAllComoboSkills()){
+            desc += "     "+skill.getDesc()+"\n";
+        }
         desc += "背包: "+"\n";
         Iterator<Item> itemIterator = getBag().iterator();
         int i=6;
@@ -139,6 +143,10 @@ public class Role extends GameElement {
             say(getName()+" 死亡！");
             state = State.DEAD;
         }
+    }
+
+    public List<ComboSkill> getAllComoboSkills(){
+        return AttackSkillFactory.getInstance().getAvalibleComboSkills(new HashSet<>(getSkillList().getSkillList()));
     }
 
     public void addExp(int exp){

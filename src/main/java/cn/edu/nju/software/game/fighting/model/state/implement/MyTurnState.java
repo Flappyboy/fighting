@@ -48,7 +48,9 @@ public class MyTurnState extends StateAdapter {
 
     @Override
     public void useItem(Item item) {
-        game.say(game.getPlayer().getName()+" 使用了物品，"+item.getName()+" 进入敌方回合！");
+        game.say(game.getPlayer().getName()+" 使用了物品 "+item.getName());
+        game.sayLine();
+        game.say("进入敌方回合！");
         game.setState(new EnemyTurnState(game));
         game.getEnemy().enemyAutoAction();
     }

@@ -5,10 +5,13 @@ import org.apache.commons.lang3.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public abstract class SkillFactory implements ISkillFactory {
 
     protected List<Skill> skillList = new ArrayList<>();
+
+    protected List<ComboSkill> comboSkillList = new ArrayList<>();
 
     @Override
     public Skill randomSkill() {
@@ -19,6 +22,14 @@ public abstract class SkillFactory implements ISkillFactory {
     public Skill randomSkill(Profession profession) {
         List<Skill> professionList = getSkillList(profession);
         return professionList.get(RandomUtils.nextInt(0,professionList.size())).clone();
+    }
+
+    @Override
+    public List<Skill> getInitSkill() {
+        List<Skill> skills = new ArrayList<>();
+        skills.add(this.skillList.get(0));
+        skills.add(this.skillList.get(1));
+        return skills;
     }
 
     @Override
@@ -38,7 +49,23 @@ public abstract class SkillFactory implements ISkillFactory {
         return list;
     }
 
+    @Override
+    public List<ComboSkill> getAvalibleComboSkills(Set<Skill> skills) {
+        List<ComboSkill> comboSkills = new ArrayList<>();
+        for (ComboSkill comboSkill :
+                comboSkillList) {
+            if (comboSkill.has(skills)) {
+                comboSkills.add(comboSkill);
+            }
+        }
+        return comboSkills;
+    }
+
     protected void add(Skill skill){
         skillList.add(skill);
+    }
+
+    protected void addCombo(ComboSkill skill){
+        comboSkillList.add(skill);
     }
 }

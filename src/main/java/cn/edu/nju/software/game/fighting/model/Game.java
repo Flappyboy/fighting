@@ -78,7 +78,11 @@ public class Game extends GameElement{
     public void setState(State state) {
         Class<? extends Scenario> scenarioClass = StateScenarioMap.get(state.getClass());
         if (scenario==null || (scenarioClass != null)){
-            this.scenario = GameManager.getInstance().changeScenario(scenarioClass);
+            if(scenario!=null && scenario.getClass().equals(scenarioClass)){
+                refresh();
+            }else {
+                this.scenario = GameManager.getInstance().changeScenario(scenarioClass);
+            }
         }
         this.state = state;
     }

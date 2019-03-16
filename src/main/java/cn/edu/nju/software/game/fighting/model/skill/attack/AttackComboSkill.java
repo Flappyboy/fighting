@@ -1,40 +1,42 @@
-package cn.edu.nju.software.game.fighting.model.skill;
+package cn.edu.nju.software.game.fighting.model.skill.attack;
 
 import cn.edu.nju.software.game.fighting.model.Game;
+import cn.edu.nju.software.game.fighting.model.ability.AttackAbility;
 import cn.edu.nju.software.game.fighting.model.role.Role;
 import cn.edu.nju.software.game.fighting.model.role.attribute.Profession;
-import cn.edu.nju.software.game.fighting.model.skill.attack.AttackSkill;
+import cn.edu.nju.software.game.fighting.model.skill.ComboSkill;
+import cn.edu.nju.software.game.fighting.model.skill.Skill;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class ComboSkill extends Skill{
-    private Set<Skill> skills = new HashSet<>();
+public class AttackComboSkill extends ComboSkill {
 
-    public ComboSkill(String name, Skill... skills) {
-        super(name, Profession.NONE);
-        this.skills.addAll(Arrays.asList(skills));
+    public AttackComboSkill(String name, Skill... skills) {
+        super(name, skills);
     }
 
     @Override
     public void performs(Game game, Role initiator, Role receiver) {
         say(initiator.getName()+" 发动了技能："+this.getName());
+        AttackAbility attackAbility = new AttackAbility();
         for(Skill skill: skills){
             if(skill instanceof AttackSkill){
                 AttackSkill attackSkill = (AttackSkill) skill;
-                receiver.receiveAttack(attackSkill.getAttackStrategy().caculateAttack(initiator, attackSkill));
+                attackAbility.attachAbility(attackSkill.getAttackStrategy().caculateAttack(initiator, attackSkill));
             }
         }
+        receiver.receiveAttack(attackAbility);
     }
 
-
-
     @Override
-    public void intensify(int point) {
-        int avgPoint = Math.max(point/skills.size(), 1);
-        for(Skill skill: skills){
-            skill.intensify(avgPoint);
+    public String getDesc() {
+        String base = "";
+        for (Skill skill :
+                skills) {
+            base+= skill.getName()+" ";
         }
+        return "组合技： "+name+ "  基础技能："+ base;
     }
 }

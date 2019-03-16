@@ -2,6 +2,8 @@ package cn.edu.nju.software.game.fighting.model.skill;
 
 import cn.edu.nju.software.game.fighting.model.skill.attack.AttackSkillFactory;
 
+import java.util.List;
+
 public class AllSkillFactory extends SkillFactory {
 
     private static AllSkillFactory instance;

@@ -19,7 +19,7 @@ public class SkillCommand extends GameCommand {
         Vector<Vector> data = new Vector<>();
         Vector<String> columns = new Vector<>();
         Vector<Skill> returnObjs = new Vector<>();
-        columns.add("武器");
+        columns.add("技能");
         columns.add("描述");
 
         for(Skill skill: skillList){

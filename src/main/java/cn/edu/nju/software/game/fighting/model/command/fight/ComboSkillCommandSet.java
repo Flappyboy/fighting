@@ -3,18 +3,17 @@ package cn.edu.nju.software.game.fighting.model.command.fight;
 import cn.edu.nju.software.game.fighting.model.command.CommandSet;
 import cn.edu.nju.software.game.fighting.model.command.base.EnemyInfoCommand;
 import cn.edu.nju.software.game.fighting.model.command.base.PlayerInfoCommand;
-import cn.edu.nju.software.game.fighting.model.command.demo.RadioTableCommand;
 
-public class FightCommandSet extends CommandSet {
+public class ComboSkillCommandSet extends CommandSet {
 
-    public FightCommandSet() {
-        super("技能");
+    public ComboSkillCommandSet() {
+        super("组合技");
     }
 
-    public static FightCommandSet getInstance() {
-        FightCommandSet demoCommandSet = new FightCommandSet();
+    public static ComboSkillCommandSet getInstance() {
+        ComboSkillCommandSet demoCommandSet = new ComboSkillCommandSet();
 
-        demoCommandSet.addCommand(new SkillCommand());
+        demoCommandSet.addCommand(new ComboSkillCommand());
         demoCommandSet.addCommand(new EnemyInfoCommand());
         demoCommandSet.addCommand(new PlayerInfoCommand());
 
