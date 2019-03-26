@@ -66,6 +66,11 @@ public class WeaponFactory implements IItemFactory {
     }
 
     @Override
+    public Item getItemByName(String name) {
+        return null;
+    }
+
+    @Override
     public List<Item> getAllItems() {
         return weaponList;
     }

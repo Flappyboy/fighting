@@ -6,5 +6,7 @@ public interface IItemFactory {
 
     Item getRandomItem();
 
+    Item getItemByName(String name);
+
     List<Item> getAllItems();
 }

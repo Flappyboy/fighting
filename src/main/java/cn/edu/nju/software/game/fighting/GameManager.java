@@ -5,8 +5,6 @@ import cn.edu.nju.software.game.fighting.model.IGameBuilder;
 import cn.edu.nju.software.game.fighting.model.scenario.Scenario;
 import cn.edu.nju.software.game.fighting.model.scenario.concrete.HomeScenario;
 import cn.edu.nju.software.game.fighting.model.scenario.ScenarioFactory;
-import cn.edu.nju.software.game.fighting.model.skill.SkillFactory;
-import cn.edu.nju.software.game.fighting.model.skill.attack.AttackSkillFactory;
 import cn.edu.nju.software.game.fighting.ui.GameLogPanel;
 import cn.edu.nju.software.game.fighting.ui.GameOperatePanel;
 import org.apache.commons.lang3.SerializationUtils;
